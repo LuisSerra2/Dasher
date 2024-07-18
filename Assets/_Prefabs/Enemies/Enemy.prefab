@@ -202,5 +202,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41415866fc044c9469e7995d8c8ebded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySplitPrefab: {fileID: 0}
   enemyDeathEffectParticle: {fileID: 3979622217795010741, guid: 8d38eb037d966ae45aa6c70fc32acaaa,
     type: 3}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  defaultGroundMaterial: {fileID: 2100000, guid: 5b1d76e8c2c40a54ab2de0ec6df6526a,
+    type: 2}

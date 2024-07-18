@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     public float cameraShakeIntensity;
     public float ShakeTime;
 
+    public Color[] colors;
+
     private Vector3 direction;
     private bool directionSet = false;
 
@@ -19,6 +21,8 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
+        int rndIndex = Random.Range(0, colors.Length);
+        transform.GetComponent<MeshRenderer>().material.color = colors[rndIndex];
         Destroy(gameObject, 5);
     }
 

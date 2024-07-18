@@ -580,6 +580,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69bc50425f25c2a45acd34f3590f0649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 132
+  explosionForce: 1000
   explosionRadius: 20
-  upwardsModifier: 20
+  upwardsModifier: 3
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128

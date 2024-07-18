@@ -29,7 +29,7 @@ public class Hurricane : MonoBehaviour
 
     IEnumerator HurricaneAnimation()
     {
-        StartCoroutine(ScaleLerping.Instance.Scale(transform, transform.localScale, new Vector3(explosionLenght, transform.position.y, explosionLenght), duration, speed));
+        StartCoroutine(ScaleLerping.Instance.Scale(transform, transform.localScale, new Vector3(explosionLenght, explosionLenght, explosionLenght), duration, speed));
 
         yield return new WaitForSeconds(duration / 2);
 

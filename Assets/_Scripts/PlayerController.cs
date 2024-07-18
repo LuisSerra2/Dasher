@@ -117,7 +117,10 @@ public class PlayerController : MonoBehaviour, IGameStateController
         {
             if (hitInfo.collider != null)
             {
-                GameObject bullet = Instantiate(bulletPrefab, transform.position, bulletPrefab.transform.rotation);
+                GameObject bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x + 1, transform.position.y, transform.position.z + 1), bulletPrefab.transform.rotation);
+                bullet.transform.LookAt(hitInfo.point);
+                bullet.transform.rotation = Quaternion.Euler(90, bullet.transform.rotation.eulerAngles.y + 230, bullet.transform.rotation.eulerAngles.z);
+
                 Bullet bulletComponent = bullet.GetComponent<Bullet>();
                 if (bulletComponent != null)
                 {
@@ -157,7 +160,7 @@ public class PlayerController : MonoBehaviour, IGameStateController
             
             if (abilityName == "HurricaneAbility")
             {
-                Instantiate(hurricanePrefab, new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z), hurricanePrefab.transform.rotation, transform);
+                Instantiate(hurricanePrefab, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), hurricanePrefab.transform.rotation, transform);
                 abilityUses[abilityName]--;
             }
 

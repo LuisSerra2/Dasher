@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1095278707650609268}
   - component: {fileID: -1608482400378950136}
   - component: {fileID: 783437979038028134}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NukeAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7362528522706948015}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &8024095657739679311
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 395c6bd53f2ea25449a589670e7f6512, type: 2}
+  - {fileID: 2100000, guid: 842b30ddac800a34f96a4c4dccd677ba, type: 2}
   - {fileID: 2100000, guid: 1cacb7e1edac219439f9c25ea2cc26ff, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

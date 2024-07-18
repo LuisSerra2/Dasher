@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -24,15 +23,17 @@ public class EnemyController : MonoBehaviour, IGameStateController
 
     public void Idle()
     {
-
+        // Implement Idle state behavior here
     }
+
     public void Playing()
     {
-        if (agent != null)
+        if (agent != null && playerController != null)
         {
             agent.SetDestination(playerController.transform.position);
         }
     }
+
     public void Dead()
     {
         if (agent != null)
@@ -43,8 +44,15 @@ public class EnemyController : MonoBehaviour, IGameStateController
 
     public void OnEnemyDeathEffect()
     {
-        Instantiate(enemyDeathEffectParticle, transform.position, enemyDeathEffectParticle.transform.rotation);
-        Instantiate(enemySplitPrefab, transform.position, transform.rotation);
+        if (enemyDeathEffectParticle != null)
+        {
+            Instantiate(enemyDeathEffectParticle, transform.position, enemyDeathEffectParticle.transform.rotation);
+        }
+
+        if (enemySplitPrefab != null)
+        {
+            Instantiate(enemySplitPrefab, transform.position, transform.rotation);
+        }
         Destroy(gameObject);
     }
 }
