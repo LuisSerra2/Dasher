@@ -15,6 +15,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3041725249630083841, guid: 823dc2f12a1d9b94aa54b34d5349af03,
         type: 3}
+      propertyPath: XP
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: -3041725249630083841, guid: 823dc2f12a1d9b94aa54b34d5349af03,
+        type: 3}
       propertyPath: enemySplitPrefab
       value: 
       objectReference: {fileID: 5659876240930030615, guid: 41f094eef9dc24741ad6501bb8bd1113,
@@ -127,7 +132,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 95e4d87e3471fe84fa2c6f6f3b04418e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.67
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 95e4d87e3471fe84fa2c6f6f3b04418e,
         type: 3}

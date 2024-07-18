@@ -7,6 +7,10 @@ public class EnemyController : MonoBehaviour, IGameStateController
     public GameObject enemySplitPrefab;
     public ParticleSystem enemyDeathEffectParticle;
 
+
+    public int XP = 20;
+
+
     private PlayerController playerController;
     private NavMeshAgent agent;
 
@@ -44,6 +48,7 @@ public class EnemyController : MonoBehaviour, IGameStateController
 
     public void OnEnemyDeathEffect()
     {
+        LevelUpManager.Instance.StartXPEvent(XP);
         if (enemyDeathEffectParticle != null)
         {
             Instantiate(enemyDeathEffectParticle, transform.position, enemyDeathEffectParticle.transform.rotation);

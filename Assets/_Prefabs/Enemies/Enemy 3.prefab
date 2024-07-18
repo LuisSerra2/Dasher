@@ -25,6 +25,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3041725249630083841, guid: 823dc2f12a1d9b94aa54b34d5349af03,
         type: 3}
+      propertyPath: XP
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: -3041725249630083841, guid: 823dc2f12a1d9b94aa54b34d5349af03,
+        type: 3}
       propertyPath: enemySplitPrefab
       value: 
       objectReference: {fileID: 3235767661800028472, guid: 453c3bf83ab2d7f4b8828cc23faecbd7,
