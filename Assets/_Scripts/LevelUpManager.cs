@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.Rendering.Universal;
 using UnityEngine;
 
@@ -58,26 +59,24 @@ public class LevelUpManager : Singleton<LevelUpManager>
             previousXP = XP;
             LevelUpCount++;
             AddXPReceivedMore();
-            Debug.Log("PreviousXPMaximum " + previousXPMaximum);
-            Debug.Log("currentXPMaximum " + currentXPMaximum);
-            Debug.Log("LevelUpCount " + LevelUpCount);
-            Debug.Log(XP);
         }
     }
 
     public int GetXPAfterLevelUp()
     {
         int xp = previousXP - previousXPMaximum;
-        if (xp < 0) xp = 0; 
-        Debug.Log("GetXPAfterLevelUp " + xp);
 
+        if (xp < 0)
+        {
+            xp = -xp;
+        }
+        
         return xp;
     }
 
     public void AddXPReceivedMore()
     {
         XP = GetXPAfterLevelUp();
-        Debug.Log("AddXPReceivedMore " + XP);
     }
 
 
