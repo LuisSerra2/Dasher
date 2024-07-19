@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class EnemySplit : MonoBehaviour
 {
     public float explosionForce = 10f;
-    public float explosionRadius = 5f; 
+    public float explosionRadius = 5f;
     public float upwardsModifier = 1f;
 
     public LayerMask groundLayer;
@@ -14,7 +15,17 @@ public class EnemySplit : MonoBehaviour
     {
         GetGroundCubes(gameObject);
         GetAllObjects();
-        Destroy(gameObject, 5f);
+        StartCoroutine(ScaleAnimation());
+
+    }
+
+    IEnumerator ScaleAnimation()
+    {
+        yield return new WaitForSeconds(3);
+
+        StartCoroutine(ScaleLerping.Instance.Scale(transform, transform.localScale, Vector3.zero, 2, 1));
+
+        Destroy(gameObject, 2);
     }
 
     private void GetAllObjects()

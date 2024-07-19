@@ -46,8 +46,7 @@ public class LevelUpManager : Singleton<LevelUpManager>
     private void LevelUpManager_OnXPReceive(int EnemyXP)
     {
         XP += EnemyXP;
-
-        Debug.Log(XP);
+        UIManager.Instance.XpUpdate(XP, currentXPMaximum, LevelUpCount);
     }
 
     public void AddLevel()
@@ -59,6 +58,7 @@ public class LevelUpManager : Singleton<LevelUpManager>
             previousXP = XP;
             LevelUpCount++;
             AddXPReceivedMore();
+            UIManager.Instance.XpUpdate(XP, currentXPMaximum, LevelUpCount);
         }
     }
 
