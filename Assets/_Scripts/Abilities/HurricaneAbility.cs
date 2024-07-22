@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HurricaneAbility : Ability
+public class HurricaneAbility : AbilityEffect
 {
     public override void ApplyEffect(PlayerController player)
     {

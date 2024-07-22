@@ -21,7 +21,7 @@ public class Nuke : MonoBehaviour
 
     public Color[] initialColor;
     public Color[] endColor;
-    private Material bombMaterial;
+    private Material[] bombMaterial;
     private Color startColor;
 
     private Vector3 initialWarningScale;
@@ -29,7 +29,7 @@ public class Nuke : MonoBehaviour
 
     private void Start()
     {
-        Vector3 warningPosition = new Vector3(transform.position.x, 0, transform.position.z); 
+        Vector3 warningPosition = new Vector3(transform.position.x, 0, transform.position.z);
         warningClone = Instantiate(warningMarker, warningPosition, Quaternion.identity);
 
         initialWarningScale = warningClone.transform.localScale;
@@ -68,11 +68,17 @@ public class Nuke : MonoBehaviour
         Destroy(transform.GetChild(0).gameObject);
         //StartCoroutine(ScaleLerping.Instance.Scale(bombClone, bombClone.localScale, new Vector3(explosionLenght, explosionLenght, explosionLenght), duration, speed));
 
-        bombMaterial = bombClone.GetComponent<MeshRenderer>().materials[0];
+        MeshRenderer[] meshRenderers = bombClone.GetComponentsInChildren<MeshRenderer>();
+        bombMaterial = new Material[meshRenderers.Length];
+
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            bombMaterial[i] = meshRenderers[i].material;
+        }
 
         Color targetEndColor = GetEndColor(startColor);
 
-        StartCoroutine(ColorLerp(bombMaterial, startColor * 2, targetEndColor * 2, duration / 1.5f));
+        StartCoroutine(ColorLerpAllMaterials(bombMaterial, startColor * 2, targetEndColor, duration / 1.5f));
 
         yield return new WaitForSeconds(duration / 2);
 
@@ -84,16 +90,22 @@ public class Nuke : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private IEnumerator ColorLerp(Material material, Color startColor, Color endColor, float lerpDuration)
+    private IEnumerator ColorLerpAllMaterials(Material[] materials, Color startColor, Color endColor, float lerpDuration)
     {
         float timeElapsed = 0;
         while (timeElapsed < lerpDuration)
         {
-            material.color = Color.Lerp(startColor, endColor, timeElapsed / lerpDuration);
+            foreach (Material material in materials)
+            {
+                material.color = Color.Lerp(startColor, endColor, timeElapsed / lerpDuration);
+            }
             timeElapsed += Time.deltaTime;
             yield return null;
         }
-        material.color = endColor;
+        foreach (Material material in materials)
+        {
+            material.color = endColor;
+        }
     }
 
     private Color GetEndColor(Color startColor)
@@ -107,10 +119,9 @@ public class Nuke : MonoBehaviour
         } else if (startColor == initialColor[2])
         {
             return endColor[2];
-        }
-          else
+        } else
         {
-            return Color.white; 
+            return Color.white;
         }
     }
 

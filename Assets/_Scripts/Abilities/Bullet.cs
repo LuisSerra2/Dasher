@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 10;
     public float cameraShakeIntensity;
     public float ShakeTime;
+
+    private float speed;
 
     public Color[] colors;
 
@@ -17,6 +18,12 @@ public class Bullet : MonoBehaviour
     {
         direction = newDirection;
         directionSet = true;
+    }
+
+    public void ApplyQAbilityProperties(QAbility qAbility)
+    {
+        transform.localScale = new Vector3(qAbility.size, qAbility.size, qAbility.size);
+        speed = qAbility.speed;
     }
 
     private void Start()

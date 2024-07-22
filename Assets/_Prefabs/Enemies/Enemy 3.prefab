@@ -10,6 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8910460698777555747, guid: 823dc2f12a1d9b94aa54b34d5349af03,
         type: 3}
+      propertyPath: m_Speed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -8910460698777555747, guid: 823dc2f12a1d9b94aa54b34d5349af03,
+        type: 3}
       propertyPath: m_Height
       value: 3.87
       objectReference: {fileID: 0}

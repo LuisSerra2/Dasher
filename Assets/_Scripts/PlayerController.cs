@@ -125,6 +125,7 @@ public class PlayerController : MonoBehaviour, IGameStateController
                 if (bulletComponent != null)
                 {
                     bulletComponent.SetDirection((hitInfo.point - transform.position).normalized);
+                    bulletComponent.ApplyQAbilityProperties(FindObjectOfType<QAbility>());
                 }
             }
         }
@@ -192,7 +193,7 @@ public class PlayerController : MonoBehaviour, IGameStateController
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.root.TryGetComponent(out Ability ability))
+        if (other.transform.root.TryGetComponent(out AbilityEffect ability))
         {
             ability.ApplyEffect(this);
         }
