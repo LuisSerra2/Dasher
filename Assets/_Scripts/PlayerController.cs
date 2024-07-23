@@ -37,9 +37,9 @@ public class PlayerController : MonoBehaviour, IGameStateController
         abilityUses["NukeAbility"] = 0;
         abilityUses["HurricaneAbility"] = 0;
 
-        abilityCooldownTimer["BulletAbility"] = bulletCooldown; 
-        abilityCooldownTimer["NukeAbility"] = nukeCooldown; 
-        abilityCooldownTimer["HurricaneAbility"] = hurricaneCooldownDivideByTwo / 2; 
+        abilityCooldownTimer["BulletAbility"] = bulletCooldown;
+        abilityCooldownTimer["NukeAbility"] = nukeCooldown;
+        abilityCooldownTimer["HurricaneAbility"] = hurricaneCooldownDivideByTwo / 2;
 
         abilityCooldowns["BulletAbility"] = 0;
         abilityCooldowns["NukeAbility"] = 0;
@@ -59,16 +59,16 @@ public class PlayerController : MonoBehaviour, IGameStateController
         {
             MovementWithRaycast();
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && !Input.GetKeyDown(KeyCode.LeftShift))
         {
             UseAbility("BulletAbility");
         }
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && !Input.GetKeyDown(KeyCode.LeftShift))
         {
             UseAbility("NukeAbility");
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !Input.GetKeyDown(KeyCode.LeftShift))
         {
             UseAbility("HurricaneAbility");
         }
@@ -155,10 +155,17 @@ public class PlayerController : MonoBehaviour, IGameStateController
 
             if (abilityName == "NukeAbility")
             {
-                Instantiate(nukePrefab, new Vector3(transform.position.x, transform.position.y + 10, transform.position.z), nukePrefab.transform.rotation);
+                GameObject nukePrefabClone = Instantiate(nukePrefab, new Vector3(transform.position.x, transform.position.y + 10, transform.position.z), nukePrefab.transform.rotation);
+
+                Nuke nuke = nukePrefabClone.GetComponent<Nuke>();
+                if (nuke != null)
+                {
+                    nuke.ApplyWAbilityProperties(FindObjectOfType<WAbility>());
+                }
+
                 abilityUses[abilityName]--;
             }
-            
+
             if (abilityName == "HurricaneAbility")
             {
                 Instantiate(hurricanePrefab, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), hurricanePrefab.transform.rotation, transform);

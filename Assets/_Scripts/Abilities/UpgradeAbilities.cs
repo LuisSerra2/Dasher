@@ -11,10 +11,12 @@ public class UpgradeAbilities : Singleton<UpgradeAbilities>
     public event Action OnUpgradeR;
 
     private QAbility qAbility;
+    private WAbility wAbility;
 
     private void Start()
     {
         qAbility = FindObjectOfType<QAbility>();
+        wAbility = FindObjectOfType<WAbility>();
     }
 
     private void Update()
@@ -28,10 +30,12 @@ public class UpgradeAbilities : Singleton<UpgradeAbilities>
     private void OnEnable()
     {
         OnUpgradeQ += UpgradeQAbility;
+        OnUpgradeW += UpgradeWAbility;
     }
     private void OnDisable()
     {
         OnUpgradeQ -= UpgradeQAbility;
+        OnUpgradeW -= UpgradeWAbility;
     }
 
     private void UpgradeInputs(Action onUpgrade, KeyCode keyCode)
@@ -41,7 +45,6 @@ public class UpgradeAbilities : Singleton<UpgradeAbilities>
         {
             if (Input.GetKeyDown(keyCode)){
                 onUpgrade?.Invoke();
-                Debug.Log("Q Ability Upgraded");
             }
         }
 
@@ -51,6 +54,12 @@ public class UpgradeAbilities : Singleton<UpgradeAbilities>
     {
 
         qAbility.Upgrade();
+    }
+
+    private void UpgradeWAbility()
+    {
+
+        wAbility.Upgrade();
     }
 }
 

@@ -7,7 +7,7 @@ public class Nuke : MonoBehaviour
     public Transform bombAnimation;
     public GameObject warningMarker;
 
-    public float explosionLenght = 5;
+    public float explosionLenght;
     public float duration = 1;
     public float speed = 1;
 
@@ -26,6 +26,11 @@ public class Nuke : MonoBehaviour
 
     private Vector3 initialWarningScale;
     private float initialHeight;
+
+    public void ApplyWAbilityProperties(WAbility wAbility)
+    {
+        explosionLenght = wAbility.explosionLenght;
+    }
 
     private void Start()
     {
