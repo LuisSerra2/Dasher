@@ -20946,6 +20946,57 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02, y: 0.020000005, z: 0.020000005}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &382106379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 382106380}
+  - component: {fileID: 382106381}
+  m_Layer: 0
+  m_Name: SpawnIndicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &382106380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382106379}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -960, y: -540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 693086172}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &382106381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382106379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e17815b12a689d4a8359f0e12171c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indicatorPrefab: {fileID: 2987815408687284955, guid: d5423c42be0a5a44b92912770d08171c,
+    type: 3}
+  indicatorDuration: 1
+  indicatorColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  colorChangeInterval: 0.25
 --- !u!1 &383005207
 GameObject:
   m_ObjectHideFlags: 0
@@ -39412,6 +39463,7 @@ RectTransform:
   m_Children:
   - {fileID: 982698924}
   - {fileID: 591792019}
+  - {fileID: 382106380}
   m_Father: {fileID: 845541614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -80321,7 +80373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1331771798
 Transform:
   m_ObjectHideFlags: 0
@@ -105989,6 +106041,7 @@ MonoBehaviour:
   - {fileID: 1179848534}
   - {fileID: 1274713533}
   numberOfEnemiesToSpawn: 3
+  spawnIndicator: {fileID: 382106381}
 --- !u!1 &1753450093
 GameObject:
   m_ObjectHideFlags: 0

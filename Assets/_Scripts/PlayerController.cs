@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour, IGameStateController
                 if (bulletComponent != null)
                 {
                     bulletComponent.SetDirection((hitInfo.point - transform.position).normalized);
-                    bulletComponent.ApplyQAbilityProperties(FindObjectOfType<QAbility>());
+                    //bulletComponent.ApplyQAbilityProperties(FindObjectOfType<QAbility>());
                 }
             }
         }
@@ -157,11 +157,11 @@ public class PlayerController : MonoBehaviour, IGameStateController
             {
                 GameObject nukePrefabClone = Instantiate(nukePrefab, new Vector3(transform.position.x, transform.position.y + 10, transform.position.z), nukePrefab.transform.rotation);
 
-                Nuke nuke = nukePrefabClone.GetComponent<Nuke>();
-                if (nuke != null)
-                {
-                    nuke.ApplyWAbilityProperties(FindObjectOfType<WAbility>());
-                }
+                //Nuke nuke = nukePrefabClone.GetComponent<Nuke>();
+                //if (nuke != null)
+                //{
+                //    nuke.ApplyWAbilityProperties(FindObjectOfType<WAbility>());
+                //}
 
                 abilityUses[abilityName]--;
             }

@@ -8,6 +8,8 @@ public class WaveManager : MonoBehaviour, IGameStateController
     public BoxCollider[] spawnArea;
     public int numberOfEnemiesToSpawn;
 
+    public SpawnIndicator spawnIndicator;
+
     private float timer;
     private const float defaultTimer = 5;
 
@@ -53,6 +55,11 @@ public class WaveManager : MonoBehaviour, IGameStateController
             Vector3 spawnPosition = GetRandomPositionInArea(area);
 
             Instantiate(enemy, spawnPosition, Quaternion.identity);
+
+            if (spawnIndicator != null)
+            {
+                spawnIndicator.ShowIndicator(spawnPosition);
+            }
         }
     }
 

@@ -744,9 +744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1b7ff2cf9024241bfbc21f7d75622d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  maxLevel: 5
-  speed: 50
+  speed: 100
   size: 100
   cameraShakeIntensity: 2
   ShakeTime: 0.25
