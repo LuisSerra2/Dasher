@@ -84,4 +84,7 @@ public class LevelUpManager : Singleton<LevelUpManager>
     {
         return XP >= currentXPMaximum;
     }
+
+    public int GetCurrentLevelUp() => LevelUpCount;
+
 }

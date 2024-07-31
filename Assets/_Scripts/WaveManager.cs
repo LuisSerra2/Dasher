@@ -7,6 +7,7 @@ public class WaveManager : MonoBehaviour, IGameStateController
     public GameObject[] enemies;
     public BoxCollider[] spawnArea;
     public int numberOfEnemiesToSpawn;
+    public GameObject spawnindicatorPrefab;
 
     public SpawnIndicator spawnIndicator;
 
@@ -58,7 +59,7 @@ public class WaveManager : MonoBehaviour, IGameStateController
 
             if (spawnIndicator != null)
             {
-                spawnIndicator.ShowIndicator(spawnPosition);
+                spawnIndicator.ShowIndicator(spawnindicatorPrefab, spawnPosition);
             }
         }
     }

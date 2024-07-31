@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class SpawnIndicator : MonoBehaviour
 {
-    public GameObject indicatorPrefab;
     public float indicatorDuration = 1f;
     public List<Color> indicatorColors;
     public float colorChangeInterval = 0.25f; 
@@ -17,7 +16,7 @@ public class SpawnIndicator : MonoBehaviour
         mainCamera = Camera.main;
     }
 
-    public void ShowIndicator(Vector3 position)
+    public void ShowIndicator(GameObject indicatorPrefab, Vector3 position)
     {
         GameObject indicator = Instantiate(indicatorPrefab, transform);
         Image indicatorImage = indicator.GetComponent<Image>();
@@ -43,10 +42,6 @@ public class SpawnIndicator : MonoBehaviour
                 screenPosition.x = Mathf.Clamp(screenPosition.x, 0.05f, 0.95f);
                 screenPosition.y = Mathf.Clamp(screenPosition.y, 0.05f, 0.95f);
                 indicator.transform.position = mainCamera.ViewportToScreenPoint(screenPosition);
-
-                //Vector3 direction = (targetPosition - mainCamera.transform.position).normalized;
-                //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                //indicator.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
             }
 
             yield return null;

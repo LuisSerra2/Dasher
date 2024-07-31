@@ -204,5 +204,10 @@ public class PlayerController : MonoBehaviour, IGameStateController
         {
             ability.ApplyEffect(this);
         }
+
+        if (other.transform.parent != null && other.transform.parent.GetComponent<Laser>() != null || other.transform.GetComponent<Meteorite>() != null)
+        {
+            GameController.Instance.ChangeState(GameManager.Dead);
+        }
     }
 }
