@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class SpawnIndicator : MonoBehaviour
 {
     public float indicatorDuration = 1f;
-    public List<Color> indicatorColors;
     public float colorChangeInterval = 0.25f; 
 
     private Camera mainCamera;
@@ -16,7 +15,7 @@ public class SpawnIndicator : MonoBehaviour
         mainCamera = Camera.main;
     }
 
-    public void ShowIndicator(GameObject indicatorPrefab, Vector3 position)
+    public void ShowIndicator(GameObject indicatorPrefab, Vector3 position, List<Color> indicatorColors)
     {
         GameObject indicator = Instantiate(indicatorPrefab, transform);
         Image indicatorImage = indicator.GetComponent<Image>();
@@ -24,7 +23,7 @@ public class SpawnIndicator : MonoBehaviour
 
         StartCoroutine(PositionIndicator(indicator, position));
         StartCoroutine(HideIndicatorAfterDelay(indicator, indicatorDuration));
-        StartCoroutine(ChangeColor(indicatorImage));
+        StartCoroutine(ChangeColor(indicatorImage, indicatorColors));
     }
 
     private IEnumerator PositionIndicator(GameObject indicator, Vector3 targetPosition)
@@ -54,7 +53,7 @@ public class SpawnIndicator : MonoBehaviour
         Destroy(indicator);
     }
 
-    private IEnumerator ChangeColor(Image indicatorImage)
+    private IEnumerator ChangeColor(Image indicatorImage, List<Color> indicatorColors)
     {
         int colorIndex = 0;
 

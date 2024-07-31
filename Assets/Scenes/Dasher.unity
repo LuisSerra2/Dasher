@@ -11211,18 +11211,21 @@ MonoBehaviour:
     type: 3}
   laserSpawnIndicator: {fileID: 2987815408687284955, guid: d5423c42be0a5a44b92912770d08171c,
     type: 3}
+  indicatorColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
   horizontalSpawnArea: {fileID: 1441960890}
   verticalSpawnArea: {fileID: 1339880104}
-  laserAmount: 3
+  laserAmount: 1
   minDistanceBetweenLasers: 4
   spawnedPositions: []
   laserDefaultTimer: 5
   meteriotePrefab: {fileID: 6860865911977029410, guid: 0996b294c1cb97a409efc61001012976,
     type: 3}
-  meterioteWarning: {fileID: 6235037124797126604, guid: aefc7932445985d428bf4d91f5e15bde,
+  meterioteWarning: {fileID: 6235037124797126604, guid: 48aaa194db7369448a918fa44396daab,
     type: 3}
   meterioteSpawnArea: {fileID: 10336858}
-  meteoriteAmount: 5
+  meteoriteAmount: 1
   meterioteDefaultTimer: 10
   spawnIndicator: {fileID: 382106381}
 --- !u!1 &197848406
@@ -21108,9 +21111,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indicatorDuration: 1
-  indicatorColors:
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 0, b: 0, a: 1}
   colorChangeInterval: 0.25
 --- !u!1 &383005207
 GameObject:
@@ -38396,8 +38396,8 @@ Transform:
   m_GameObject: {fileID: 667236629}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.20458153, z: 0, w: 0.97884953}
-  m_LocalPosition: {x: -35.3, y: 0, z: 6.6}
-  m_LocalScale: {x: 1, y: 1, z: 53}
+  m_LocalPosition: {x: -36.9, y: 0, z: 3.7}
+  m_LocalScale: {x: 0.01, y: 1, z: 27.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 948774684}
@@ -70562,7 +70562,7 @@ Transform:
   m_GameObject: {fileID: 1179848532}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.016579883, z: 0, w: 0.99986255}
-  m_LocalPosition: {x: -1.2, y: 0, z: -16.6}
+  m_LocalPosition: {x: -1.2, y: 0, z: -21.8}
   m_LocalScale: {x: 53, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72310,8 +72310,8 @@ Transform:
   m_GameObject: {fileID: 1205704501}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.24166782, z: 0, w: 0.970359}
-  m_LocalPosition: {x: 31.3, y: 0, z: 1.4}
-  m_LocalScale: {x: 1, y: 1, z: 53}
+  m_LocalPosition: {x: 34.5, y: 0, z: 3.7}
+  m_LocalScale: {x: 1, y: 1, z: 27.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 948774684}
@@ -75754,7 +75754,7 @@ Transform:
   m_GameObject: {fileID: 1274713531}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.016579883, z: 0, w: 0.99986255}
-  m_LocalPosition: {x: -1.2, y: 0, z: 28.7}
+  m_LocalPosition: {x: -1.2, y: 0, z: 30.6}
   m_LocalScale: {x: 98.9, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -106327,8 +106327,11 @@ MonoBehaviour:
   - {fileID: 1179848534}
   - {fileID: 1274713533}
   numberOfEnemiesToSpawn: 3
-  spawnindicatorPrefab: {fileID: 2987815408687284955, guid: d5423c42be0a5a44b92912770d08171c,
+  spawnindicatorPrefab: {fileID: 2987815408687284955, guid: cd4e67d0bb917834cb5e87b8adc117db,
     type: 3}
+  indicatorColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0.7951521, b: 0, a: 1}
   spawnIndicator: {fileID: 382106381}
 --- !u!1 &1753450093
 GameObject:

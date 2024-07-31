@@ -8,6 +8,7 @@ public class ObstaclesManager : Singleton<ObstaclesManager>, IGameStateControlle
     [Header("Lasers")]
     public GameObject laserPrefab;
     public GameObject laserSpawnIndicator;
+    public List<Color> indicatorColors;
     public BoxCollider horizontalSpawnArea;
     public BoxCollider verticalSpawnArea;
     public int laserAmount = 3;
@@ -31,6 +32,10 @@ public class ObstaclesManager : Singleton<ObstaclesManager>, IGameStateControlle
     public float meterioteDefaultTimer;
     private float meterioteTimer;
 
+
+    [Header("IncreaseDifficulty")]
+    private int LevelDifficulty = 0;
+
     public SpawnIndicator spawnIndicator;
 
     private void Start()
@@ -46,6 +51,7 @@ public class ObstaclesManager : Singleton<ObstaclesManager>, IGameStateControlle
 
     public void Playing()
     {
+        IncreaseDifficulty();
         LaserTimer();
         MeterioteTimer();
     }
@@ -84,12 +90,12 @@ public class ObstaclesManager : Singleton<ObstaclesManager>, IGameStateControlle
             if (attempts < 100)
             {
                 GameObject laser = Instantiate(laserPrefab, spawnPosition, Quaternion.identity);
-                laser.GetComponent<Laser>().isHorizontal = isHorizontal; 
+                laser.GetComponent<Laser>().isHorizontal = isHorizontal;
                 spawnedPositions.Add(spawnPosition);
 
                 if (spawnIndicator != null)
                 {
-                    spawnIndicator.ShowIndicator(laserSpawnIndicator, spawnPosition);
+                    spawnIndicator.ShowIndicator(laserSpawnIndicator, spawnPosition, indicatorColors);
                 }
             }
         }
@@ -102,7 +108,7 @@ public class ObstaclesManager : Singleton<ObstaclesManager>, IGameStateControlle
 
     private void LaserTimer()
     {
-        if (LevelUpManager.Instance.GetCurrentLevelUp() <= 2) return; 
+        if (LevelUpManager.Instance.GetCurrentLevelUp() <= 2) return;
 
         laserTimer -= Time.deltaTime;
 
@@ -163,6 +169,21 @@ public class ObstaclesManager : Singleton<ObstaclesManager>, IGameStateControlle
 
     #endregion
 
+    private void IncreaseDifficulty()
+    {
+        if (LevelUpManager.Instance.HasLevelUp())
+        {
+            LevelDifficulty++;
+            if (LevelDifficulty >= 2)
+            {
+                LevelDifficulty = 0;
+                laserAmount++;
+                meteoriteAmount++;
+            }
+        }
+    }
+
+
     Vector3 GetRandomPositionInArea(BoxCollider area)
     {
         Vector3 min = area.bounds.min;
@@ -181,7 +202,7 @@ public class ObstaclesManager : Singleton<ObstaclesManager>, IGameStateControlle
         {
             if (Vector3.Distance(spawnedPosition, position) < minDistanceBetweenLasers)
             {
-                return false; 
+                return false;
             }
         }
         return true;

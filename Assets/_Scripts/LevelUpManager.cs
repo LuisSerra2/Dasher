@@ -70,7 +70,7 @@ public class LevelUpManager : Singleton<LevelUpManager>
         {
             xp = -xp;
         }
-        
+
         return xp;
     }
 
@@ -86,5 +86,5 @@ public class LevelUpManager : Singleton<LevelUpManager>
     }
 
     public int GetCurrentLevelUp() => LevelUpCount;
-
 }
+
