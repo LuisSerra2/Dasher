@@ -8,6 +8,7 @@ using UnityEngine;
 public class LevelUpManager : Singleton<LevelUpManager>
 {
     public event Action<int> OnXPReceive;
+    public event Action OnLevelUp;
 
     private const int defaultXP = 0;
     private int XP;
@@ -53,6 +54,7 @@ public class LevelUpManager : Singleton<LevelUpManager>
     {
         if (HasLevelUp())
         {
+            OnLevelUp?.Invoke();
             previousXPMaximum = currentXPMaximum;
             currentXPMaximum *= upgradeCurrentXPMaximum;
             previousXP = XP;

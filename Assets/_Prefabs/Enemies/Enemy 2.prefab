@@ -11,12 +11,17 @@ PrefabInstance:
     - target: {fileID: -8910460698777555747, guid: 823dc2f12a1d9b94aa54b34d5349af03,
         type: 3}
       propertyPath: m_Speed
-      value: 20
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8910460698777555747, guid: 823dc2f12a1d9b94aa54b34d5349af03,
         type: 3}
       propertyPath: m_Radius
       value: 3.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8910460698777555747, guid: 823dc2f12a1d9b94aa54b34d5349af03,
+        type: 3}
+      propertyPath: m_Acceleration
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -3041725249630083841, guid: 823dc2f12a1d9b94aa54b34d5349af03,
         type: 3}

@@ -38,6 +38,16 @@ public class ObstaclesManager : Singleton<ObstaclesManager>, IGameStateControlle
 
     public SpawnIndicator spawnIndicator;
 
+    private void OnEnable()
+    {
+        LevelUpManager.Instance.OnLevelUp += UpdateDifficulty;
+    }
+
+    private void OnDisable()
+    {
+        LevelUpManager.Instance.OnLevelUp -= UpdateDifficulty;
+    }
+
     private void Start()
     {
         laserTimer = laserDefaultTimer;
@@ -51,7 +61,6 @@ public class ObstaclesManager : Singleton<ObstaclesManager>, IGameStateControlle
 
     public void Playing()
     {
-        IncreaseDifficulty();
         LaserTimer();
         MeterioteTimer();
     }
@@ -145,7 +154,6 @@ public class ObstaclesManager : Singleton<ObstaclesManager>, IGameStateControlle
 
                 Vector3 warningPosition = new Vector3(spawnPosition.x, 0, spawnPosition.z);
                 GameObject meterioteWarningClone = Instantiate(meterioteWarning, warningPosition, Quaternion.identity);
-                meterioteWarningClone.transform.localScale *= 4;
 
                 Meteorite meteoriteScript = meterioteClone.GetComponent<Meteorite>();
                 meteoriteScript.warningObject = meterioteWarningClone;
@@ -169,9 +177,9 @@ public class ObstaclesManager : Singleton<ObstaclesManager>, IGameStateControlle
 
     #endregion
 
-    private void IncreaseDifficulty()
+    private void UpdateDifficulty()
     {
-        if (LevelUpManager.Instance.HasLevelUp())
+        if (LevelUpManager.Instance.GetCurrentLevelUp() >= 2)
         {
             LevelDifficulty++;
             if (LevelDifficulty >= 2)

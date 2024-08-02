@@ -23,5 +23,19 @@ public class ScaleLerping : Singleton<ScaleLerping>
             yield return null;
         }
     }
-    
+
+    public IEnumerator ScaleUI(RectTransform obj, Vector3 initial, Vector3 end, float duration, float speed)
+    {
+
+        float t = 0.0f;
+        float rate = (1f / duration) * speed;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime * rate;
+            obj.localScale = Vector3.Lerp(initial, end, t);
+            yield return null;
+        }
+    }
+
 }

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class WaveManager : MonoBehaviour, IGameStateController
+public class WaveManager : Singleton<WaveManager>, IGameStateController
 {
     public GameObject[] enemies;
     public BoxCollider[] spawnArea;
@@ -14,6 +15,19 @@ public class WaveManager : MonoBehaviour, IGameStateController
 
     private float timer;
     private const float defaultTimer = 5;
+
+    private List<GameObject> spawnedEnemies = new List<GameObject>();
+    private int currentLevel = 1;
+
+    private void OnEnable()
+    {
+        LevelUpManager.Instance.OnLevelUp += UpdateDifficulty;
+    }
+
+    private void OnDisable()
+    {
+        LevelUpManager.Instance.OnLevelUp -= UpdateDifficulty;
+    }
 
     private void Start()
     {
@@ -56,13 +70,46 @@ public class WaveManager : MonoBehaviour, IGameStateController
 
             Vector3 spawnPosition = GetRandomPositionInArea(area);
 
-            Instantiate(enemy, spawnPosition, Quaternion.identity);
+            GameObject enemyClone = Instantiate(enemy, spawnPosition, Quaternion.identity);
+
+            spawnedEnemies.Add(enemyClone);
 
             if (spawnIndicator != null)
             {
                 spawnIndicator.ShowIndicator(spawnindicatorPrefab, spawnPosition, indicatorColors);
             }
+
+            UpdateEnemyDifficulty(enemyClone);
         }
+    }
+
+    private void UpdateDifficulty()
+    {
+        currentLevel = LevelUpManager.Instance.GetCurrentLevelUp();
+        UpdateAllEnemiesDifficulty();
+    }
+
+    private void UpdateAllEnemiesDifficulty()
+    {
+        foreach (var enemy in spawnedEnemies)
+        {
+            UpdateEnemyDifficulty(enemy);
+        }
+    }
+
+    private void UpdateEnemyDifficulty(GameObject enemy)
+    {
+        NavMeshAgent navMeshAgent = enemy.GetComponent<NavMeshAgent>();
+        if (navMeshAgent != null)
+        {
+            navMeshAgent.speed = 10 + (currentLevel - 1) * 2; 
+            navMeshAgent.acceleration = 20 + (currentLevel - 1) * 20; 
+        }
+    }
+
+    public void RemoveEnemyFromList(GameObject gameObject)
+    {
+        spawnedEnemies.Remove(gameObject);
     }
 
     Vector3 GetRandomPositionInArea(BoxCollider area)
