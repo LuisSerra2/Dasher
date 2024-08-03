@@ -17,11 +17,13 @@ public class ButtonSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (m_RectTransform != null)
         m_RectTransform.DOScale(scaleAnimEnd, 0.1f);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (m_RectTransform != null)
         m_RectTransform.DOScale(Vector3.one, 0.1f);
     }
 }
