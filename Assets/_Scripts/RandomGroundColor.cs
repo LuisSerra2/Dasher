@@ -5,6 +5,7 @@ using UnityEngine;
 public class RandomGroundColor : Singleton<RandomGroundColor>
 {
     public float explosionCenter;
+    public int blockChangeQuantity;
 
     public GameObject[] groundCubes;
     public Color[] colors;
@@ -13,17 +14,37 @@ public class RandomGroundColor : Singleton<RandomGroundColor>
     private Dictionary<GameObject, Color> originalColors = new Dictionary<GameObject, Color>();
     private List<GameObject> selectedCubes = new List<GameObject>();
 
+    public bool canSwapColor = false;
+    public float defaultTimer;
+    private float timer;
+
     private void Start()
     {
+        timer = defaultTimer;
         GetCubes();
         ColorCubes();
         StoreOriginalColors();
     }
 
+    private void Update()
+    {
+        if (canSwapColor)
+        {
+            timer -= Time.deltaTime;
+
+            if (timer <= 0)
+            {
+                timer = defaultTimer;
+                GetCubes();
+                ColorCubes();
+            }
+        }
+    }
+
     private void GetCubes()
     {
         selectedCubes.Clear();
-        int numCubesToSelect = Mathf.Min(groundCubes.Length / 3, groundCubes.Length);
+        int numCubesToSelect = Mathf.Min(groundCubes.Length / blockChangeQuantity, groundCubes.Length);
 
         HashSet<int> selectedIndices = new HashSet<int>();
 
