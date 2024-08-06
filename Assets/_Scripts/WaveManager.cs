@@ -19,6 +19,8 @@ public class WaveManager : Singleton<WaveManager>, IGameStateController
     private List<GameObject> spawnedEnemies = new List<GameObject>();
     private int currentLevel = 1;
 
+    private bool removable = true;
+
     private void OnEnable()
     {
         LevelUpManager.Instance.OnLevelUp += UpdateDifficulty;
@@ -102,14 +104,36 @@ public class WaveManager : Singleton<WaveManager>, IGameStateController
         NavMeshAgent navMeshAgent = enemy.GetComponent<NavMeshAgent>();
         if (navMeshAgent != null)
         {
-            navMeshAgent.speed = 10 + (currentLevel - 1) * 2; 
-            navMeshAgent.acceleration = 20 + (currentLevel - 1) * 20; 
+            navMeshAgent.speed = 10 + (currentLevel - 1) * 2;
+            navMeshAgent.acceleration = 20 + (currentLevel - 1) * 20;
         }
     }
 
     public void RemoveEnemyFromList(GameObject gameObject)
     {
         spawnedEnemies.Remove(gameObject);
+    }
+
+    public void RemoveEnemies()
+    {
+        if (!removable) return;
+        removable = false;
+        StartCoroutine(RemoveEnemiesInGame());
+    }
+
+    IEnumerator RemoveEnemiesInGame()
+    {
+        yield return new WaitForSeconds(0.3f);
+        foreach (var item in spawnedEnemies)
+        {
+            Destroy(item.gameObject);
+            yield return new WaitForSeconds(0.2f);
+        }
+        CameraManager.Instance.ChangeCamera();
+        yield return new WaitForSeconds(2f);
+
+        PlayerController.Instance.OnPlayerDeath();
+
     }
 
     Vector3 GetRandomPositionInArea(BoxCollider area)
