@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, IGameStateController
 {
@@ -27,6 +28,22 @@ public class PlayerController : MonoBehaviour, IGameStateController
     public GameObject hurricanePrefab;
     public float hurricaneCooldownDivideByTwo;
 
+    [Space(20)]
+
+    [Header("Ability Sprites")]
+    public Sprite defaultBulletSprite;
+    public Sprite disabledBulletSprite;
+    public Image bulletImage;
+
+    public Sprite defaultNukeSprite;
+    public Sprite disabledNukeSprite;
+    public Image nukeImage;
+
+    public Sprite defaultHurricaneSprite;
+    public Sprite disabledHurricaneSprite;
+    public Image hurricaneImage;
+
+
     private Dictionary<string, int> abilityUses = new Dictionary<string, int>();
     private Dictionary<string, float> abilityCooldowns = new Dictionary<string, float>();
     private Dictionary<string, float> abilityCooldownTimer = new Dictionary<string, float>();
@@ -46,6 +63,7 @@ public class PlayerController : MonoBehaviour, IGameStateController
         abilityCooldowns["HurricaneAbility"] = 0;
 
         UIManager.Instance.UpdateAbilitiesIndexText(abilityUses);
+        UpdateAbilitySprites();
     }
 
     public void Idle()
@@ -141,6 +159,7 @@ public class PlayerController : MonoBehaviour, IGameStateController
             abilityUses[abilityName] = 1;
         }
         UIManager.Instance.UpdateAbilitiesIndexText(abilityUses);
+        UpdateAbilitySprites();
     }
 
     private void UseAbility(string abilityName)
@@ -174,7 +193,8 @@ public class PlayerController : MonoBehaviour, IGameStateController
 
             abilityCooldowns[abilityName] = abilityCooldownTimer[abilityName];
             UIManager.Instance.UpdateAbilitiesIndexText(abilityUses);
-        }
+            UpdateAbilitySprites();
+        } 
     }
 
     private void UpdateCooldowns()
@@ -188,6 +208,14 @@ public class PlayerController : MonoBehaviour, IGameStateController
             }
         }
         UIManager.Instance.UpdateAbilitiesIndexText(abilityUses);
+        UpdateAbilitySprites();
+    }
+
+    private void UpdateAbilitySprites()
+    {
+        bulletImage.sprite = abilityUses["BulletAbility"] > 0 ? defaultBulletSprite : disabledBulletSprite;
+        nukeImage.sprite = abilityUses["NukeAbility"] > 0 ? defaultNukeSprite : disabledNukeSprite;
+        hurricaneImage.sprite = abilityUses["HurricaneAbility"] > 0 ? defaultHurricaneSprite : disabledHurricaneSprite;
     }
 
     private void OnCollisionEnter(Collision collision)

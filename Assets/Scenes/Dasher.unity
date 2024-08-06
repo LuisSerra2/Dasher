@@ -1097,6 +1097,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 451528297}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &451528300 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 180556399139884098, guid: ee640201b9604884497eeb9a803cc6eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 451528297}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &521418582
 GameObject:
   m_ObjectHideFlags: 0
@@ -3655,6 +3667,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2003718739 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 180556399139884098, guid: ee640201b9604884497eeb9a803cc6eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 2003718736}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1809985960626486144 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4004257855866492283, guid: ee640201b9604884497eeb9a803cc6eb,
@@ -3939,6 +3963,18 @@ PrefabInstance:
       addedObject: {fileID: 1722183492}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee640201b9604884497eeb9a803cc6eb, type: 3}
+--- !u!114 &5965606285789551833 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 180556399139884098, guid: ee640201b9604884497eeb9a803cc6eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 5965606285789551832}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6432966759363760408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3947,6 +3983,57 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 831472422807845277, guid: e8bef429f8c4f9e46821dc6f369e81c4,
+        type: 3}
+      propertyPath: nukeImage
+      value: 
+      objectReference: {fileID: 2003718739}
+    - target: {fileID: 831472422807845277, guid: e8bef429f8c4f9e46821dc6f369e81c4,
+        type: 3}
+      propertyPath: bulletImage
+      value: 
+      objectReference: {fileID: 5965606285789551833}
+    - target: {fileID: 831472422807845277, guid: e8bef429f8c4f9e46821dc6f369e81c4,
+        type: 3}
+      propertyPath: hurricaneImage
+      value: 
+      objectReference: {fileID: 451528300}
+    - target: {fileID: 831472422807845277, guid: e8bef429f8c4f9e46821dc6f369e81c4,
+        type: 3}
+      propertyPath: defaultNukeSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3bdf4aba0412c00408d18d6e88052c02,
+        type: 3}
+    - target: {fileID: 831472422807845277, guid: e8bef429f8c4f9e46821dc6f369e81c4,
+        type: 3}
+      propertyPath: disabledNukeSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c29e5ad0fbeabf040ac49533750b135c,
+        type: 3}
+    - target: {fileID: 831472422807845277, guid: e8bef429f8c4f9e46821dc6f369e81c4,
+        type: 3}
+      propertyPath: defaultBulletSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 90103034fa8262f4f92bdfabfc962d0d,
+        type: 3}
+    - target: {fileID: 831472422807845277, guid: e8bef429f8c4f9e46821dc6f369e81c4,
+        type: 3}
+      propertyPath: disabledBulletSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8c41493f01c1da64b8a67acd43a045e3,
+        type: 3}
+    - target: {fileID: 831472422807845277, guid: e8bef429f8c4f9e46821dc6f369e81c4,
+        type: 3}
+      propertyPath: defaultHurricaneSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 39e488a4e4bde614298192714c2bb6c5,
+        type: 3}
+    - target: {fileID: 831472422807845277, guid: e8bef429f8c4f9e46821dc6f369e81c4,
+        type: 3}
+      propertyPath: disabledHurricaneSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6d8073975bee1dc498e04b31387efb11,
+        type: 3}
     - target: {fileID: 7296730964836669041, guid: e8bef429f8c4f9e46821dc6f369e81c4,
         type: 3}
       propertyPath: m_Name
