@@ -56,6 +56,8 @@ public class PlayerController : Singleton<PlayerController>, IGameStateControlle
     private Dictionary<string, float> abilityCooldowns = new Dictionary<string, float>();
     private Dictionary<string, float> abilityCooldownTimer = new Dictionary<string, float>();
 
+    private InputsManager inputsManager;
+
     private void Start()
     {
         playerMaterial.SetFloat("_DeathTimer", 0);
@@ -74,6 +76,9 @@ public class PlayerController : Singleton<PlayerController>, IGameStateControlle
 
         UIManager.Instance.UpdateAbilitiesIndexText(abilityUses);
         UpdateAbilitySprites();
+
+        inputsManager = InputsManager.Instance;
+        UIManager.Instance.UpdateInputsText(inputsManager.customInput.keyQ, inputsManager.customInput.keyW, inputsManager.customInput.keyE);
     }
 
     public void Idle()
@@ -87,16 +92,16 @@ public class PlayerController : Singleton<PlayerController>, IGameStateControlle
         {
             MovementWithRaycast();
         }
-        if (Input.GetKeyDown(KeyCode.Q) && !Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(inputsManager.customInput.keyQ) && !Input.GetKeyDown(KeyCode.LeftShift))
         {
             UseAbility("BulletAbility");
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && !Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(inputsManager.customInput.keyW) && !Input.GetKeyDown(KeyCode.LeftShift))
         {
             UseAbility("NukeAbility");
         }
-        if (Input.GetKeyDown(KeyCode.E) && !Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(inputsManager.customInput.keyE) && !Input.GetKeyDown(KeyCode.LeftShift))
         {
             UseAbility("HurricaneAbility");
         }
@@ -112,14 +117,18 @@ public class PlayerController : Singleton<PlayerController>, IGameStateControlle
     public void Dead()
     {
         WaveManager.Instance.RemoveEnemies();
+        OnPlayerDeath();
     }
 
     public void OnPlayerDeath()
     {
-        deathTime += Time.deltaTime;
-        deathTime = Mathf.Clamp(deathTime, 0f, maxDeathTime);
+        if (WaveManager.Instance.PlayerColorChange())
+        {
+            deathTime += Time.deltaTime;
+            deathTime = Mathf.Clamp(deathTime, 0f, maxDeathTime);
 
-        playerMaterial.SetFloat("_DeathTimer", deathTime / maxDeathTime);
+            playerMaterial.SetFloat("_DeathTimer", deathTime / maxDeathTime);
+        }        
     }
 
     private void MovementWithRaycast()

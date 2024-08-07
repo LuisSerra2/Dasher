@@ -18,7 +18,11 @@ public class UIManager : Singleton<UIManager>
     public TextMeshProUGUI levelUpText;
     public TextMeshProUGUI xpText;
 
-    private Coroutine lerpCoroutine;
+    [Header("Inputs")]
+    public TextMeshProUGUI ab1;
+    public TextMeshProUGUI ab2;
+    public TextMeshProUGUI ab3;
+
 
     public void UpdateAbilitiesIndexText(Dictionary<string, int> abilityUses)
     {
@@ -45,6 +49,13 @@ public class UIManager : Singleton<UIManager>
         xpSlider.value = xp;
         levelUpText.text = levelUpCount.ToString();
         xpText.text = $"{xp} / {maxValue}";
+    }
+
+    public void UpdateInputsText(KeyCode ab1, KeyCode ab2, KeyCode ab3)
+    {
+        this.ab1.text = ab1.ToString();
+        this.ab2.text = ab2.ToString();
+        this.ab3.text = ab3.ToString();
     }
 
 }

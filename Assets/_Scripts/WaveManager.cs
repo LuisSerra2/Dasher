@@ -21,6 +21,8 @@ public class WaveManager : Singleton<WaveManager>, IGameStateController
 
     private bool removable = true;
 
+    private bool playerColorChange;
+
     private void OnEnable()
     {
         LevelUpManager.Instance.OnLevelUp += UpdateDifficulty;
@@ -126,15 +128,18 @@ public class WaveManager : Singleton<WaveManager>, IGameStateController
         yield return new WaitForSeconds(0.3f);
         foreach (var item in spawnedEnemies)
         {
-            Destroy(item.gameObject);
             yield return new WaitForSeconds(0.2f);
+            Destroy(item.gameObject);
         }
+        RandomGroundColor.Instance.ChangeGroundColorOnDeath(FindObjectOfType<PlayerController>().transform.position);
+        yield return new WaitForSeconds(0.5f);
         CameraManager.Instance.ChangeCamera();
-        yield return new WaitForSeconds(2f);
-
-        PlayerController.Instance.OnPlayerDeath();
+        yield return new WaitForSeconds(1f);
+        playerColorChange = true;
 
     }
+
+    public bool PlayerColorChange() => playerColorChange;
 
     Vector3 GetRandomPositionInArea(BoxCollider area)
     {

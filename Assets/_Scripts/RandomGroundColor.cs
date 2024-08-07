@@ -120,4 +120,24 @@ public class RandomGroundColor : Singleton<RandomGroundColor>
             }
         }
     }
+    public void ChangeGroundColorOnDeath(Vector3 playerPosition)
+    {
+        StartCoroutine(ChangeColorFromCenter(playerPosition, Color.white));
+    }
+
+    private IEnumerator ChangeColorFromCenter(Vector3 center, Color targetColor)
+    {
+        List<GameObject> sortedCubes = new List<GameObject>(groundCubes);
+        sortedCubes.Sort((a, b) => Vector3.Distance(a.transform.position, center).CompareTo(Vector3.Distance(b.transform.position, center)));
+
+        foreach (GameObject cube in sortedCubes)
+        {
+            MeshRenderer renderer = cube.GetComponent<MeshRenderer>();
+            if (renderer != null)
+            {
+                renderer.material.color = targetColor;
+            }
+            yield return new WaitForFixedUpdate();
+        }
+    }
 }

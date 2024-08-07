@@ -48,6 +48,7 @@ public class EnemyController : MonoBehaviour, IGameStateController
 
     public void OnEnemyDeathEffect()
     {
+        ScoreManager.Instance.UpdateScore(XP);
         LevelUpManager.Instance.StartXPEvent(XP);
         WaveManager.Instance.RemoveEnemyFromList(gameObject);
         if (enemyDeathEffectParticle != null)
