@@ -39,4 +39,9 @@ public class ScoreManager : Singleton<ScoreManager>, IDataPersistence
     {
         data.HighScore = HighScore.Value;
     }
+
+    public string GetUniqueIdentifier()
+    {
+        return this.gameObject.name + "_" + this.gameObject.GetInstanceID();
+    }
 }

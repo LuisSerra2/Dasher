@@ -40,6 +40,11 @@ public class InputsManager : PersistentSingleton<InputsManager>, IDataPersistenc
         data.ability2 = customInput.keyW;
         data.ability3 = customInput.keyE;
     }
+
+    public string GetUniqueIdentifier()
+    {
+        return this.gameObject.name + "_" + this.gameObject.GetInstanceID();
+    }
 }
 
 [Serializable]

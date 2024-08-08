@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using UnityEngine.SceneManagement;
 
 public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager>
 {
@@ -14,7 +15,29 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
     private FileDataHandler fileDataHandler;
 
 
+    private HashSet<string> loadedObjects = new HashSet<string>();
+
     private void Start()
+    {
+        Initialize();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Initialize();
+    }
+
+    private void Initialize()
     {
         this.fileDataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
         this.dataPersistenceObjects = FindAllDatatPersistenceObjects();
@@ -25,6 +48,7 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
     public void NewGame()
     {
         this.gameData = new GameData();
+        loadedObjects.Clear();
     }
 
     public void LoadGame()
@@ -34,15 +58,19 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
         if (this.gameData == null)
         {
             Debug.Log("No data was found. Initializing data to defaults.");
-
             NewGame();
         }
 
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
-            dataPersistenceObj.LoadData(gameData);
-        }
+            string objId = dataPersistenceObj.GetUniqueIdentifier(); 
 
+            if (!loadedObjects.Contains(objId))
+            {
+                dataPersistenceObj.LoadData(gameData);
+                loadedObjects.Add(objId);
+            }
+        }
     }
 
     public void SaveGame()
@@ -58,10 +86,10 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
     {
         SaveGame();
     }
+
     private List<IDataPersistence> FindAllDatatPersistenceObjects()
     {
         IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
-
         return new List<IDataPersistence>(dataPersistenceObjects);
     }
 }
