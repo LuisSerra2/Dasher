@@ -30,8 +30,6 @@ public class InputsManager : PersistentSingleton<InputsManager>, IDataPersistenc
         customInput.keyQ = data.ability1;
         customInput.keyW = data.ability2;
         customInput.keyE = data.ability3;
-
-        InputSettings.Instance.SetInitialDropdownValues();
     }
 
     public void SaveData(ref GameData data)

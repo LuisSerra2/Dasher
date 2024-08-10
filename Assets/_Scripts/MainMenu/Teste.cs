@@ -39,11 +39,11 @@ public class Teste : MonoBehaviour {
         }
 
         // Adiciona uma função ao botão (Start Game)
-        gameData.StartButton.onClick.AddListener(() => StartGame());
+        gameData.StartButton?.onClick.AddListener(() => StartGame());
 
 
         // Adiciona uma função ao botão (Exit Game)
-        gameData.ExitButton.onClick.AddListener(() => ExitGame());
+        gameData.ExitButton?.onClick.AddListener(() => ExitGame());
     }
     private void SwitchPainel(int painelIndex) {
 

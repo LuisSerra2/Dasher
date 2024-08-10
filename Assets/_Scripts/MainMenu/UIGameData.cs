@@ -16,6 +16,8 @@ public class UIGameData : MonoBehaviour {
     public Button StartButton;
     public Button ExitButton;
 
+    public Button ReturnToMainMenu;
+
     public List<CustomData> uiData;
 
     private void Start() {

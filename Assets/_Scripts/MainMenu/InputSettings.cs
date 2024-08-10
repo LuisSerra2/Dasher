@@ -4,18 +4,22 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InputSettings : Singleton<InputSettings>
+public class InputSettings : MonoBehaviour
 {
-    public InputsManager inputsManager;
+    private InputsManager inputsManager;
     public TMP_Dropdown keyQDropdown;
     public TMP_Dropdown keyWDropdown;
     public TMP_Dropdown keyEDropdown;
 
     private void Start()
     {
+        inputsManager = FindObjectOfType<InputsManager>();
+
         PopulateDropdown(keyQDropdown);
         PopulateDropdown(keyWDropdown);
         PopulateDropdown(keyEDropdown);
+
+        SetInitialDropdownValues();
 
         keyQDropdown.onValueChanged.AddListener(delegate { OnKeyQChanged(); });
         keyWDropdown.onValueChanged.AddListener(delegate { OnKeyWChanged(); });
@@ -57,17 +61,20 @@ public class InputSettings : Singleton<InputSettings>
     {
         KeyCode newKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyQDropdown.options[keyQDropdown.value].text);
         inputsManager.SetKeyQ(newKey);
+        UIManager.Instance?.UpdateInputsText(inputsManager.customInput.keyQ, inputsManager.customInput.keyW, inputsManager.customInput.keyE);
     }
 
     private void OnKeyWChanged()
     {
         KeyCode newKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyWDropdown.options[keyWDropdown.value].text);
         inputsManager.SetKeyW(newKey);
+        UIManager.Instance?.UpdateInputsText(inputsManager.customInput.keyQ, inputsManager.customInput.keyW, inputsManager.customInput.keyE);
     }
 
     private void OnKeyEChanged()
     {
         KeyCode newKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyEDropdown.options[keyEDropdown.value].text);
         inputsManager.SetKeyE(newKey);
+        UIManager.Instance?.UpdateInputsText(inputsManager.customInput.keyQ, inputsManager.customInput.keyW, inputsManager.customInput.keyE);
     }
 }
