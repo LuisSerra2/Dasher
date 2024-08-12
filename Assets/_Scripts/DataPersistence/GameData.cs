@@ -11,6 +11,8 @@ public class GameData
     public KeyCode ability1;
     public KeyCode ability2;
     public KeyCode ability3;
+    public float music;
+    public float sound;
 
 
     public GameData()
@@ -22,6 +24,10 @@ public class GameData
         this.ability1 = KeyCode.Q;
         this.ability2 = KeyCode.W;
         this.ability3 = KeyCode.E;
+
+        //Sound Slider
+        this.music = 0.2f;
+        this.sound = 0.2f;
     }
 }
 

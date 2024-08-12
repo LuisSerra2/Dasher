@@ -53,6 +53,7 @@ public class UIManager : Singleton<UIManager>
 
     public void UpdateInputsText(KeyCode ab1, KeyCode ab2, KeyCode ab3)
     {
+        if (this.ab1 == null) return;
         this.ab1.text = ab1.ToString();
         this.ab2.text = ab2.ToString();
         this.ab3.text = ab3.ToString();

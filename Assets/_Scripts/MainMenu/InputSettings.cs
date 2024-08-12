@@ -33,7 +33,10 @@ public class InputSettings : MonoBehaviour
 
         foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
         {
-            options.Add(key.ToString());
+            if (key >= KeyCode.A && key <= KeyCode.Z)
+            {
+                options.Add(key.ToString());
+            }
         }
 
         dropdown.AddOptions(options);
@@ -61,20 +64,20 @@ public class InputSettings : MonoBehaviour
     {
         KeyCode newKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyQDropdown.options[keyQDropdown.value].text);
         inputsManager.SetKeyQ(newKey);
-        UIManager.Instance?.UpdateInputsText(inputsManager.customInput.keyQ, inputsManager.customInput.keyW, inputsManager.customInput.keyE);
+        UIManager.Instance.UpdateInputsText(inputsManager.customInput.keyQ, inputsManager.customInput.keyW, inputsManager.customInput.keyE);
     }
 
     private void OnKeyWChanged()
     {
         KeyCode newKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyWDropdown.options[keyWDropdown.value].text);
         inputsManager.SetKeyW(newKey);
-        UIManager.Instance?.UpdateInputsText(inputsManager.customInput.keyQ, inputsManager.customInput.keyW, inputsManager.customInput.keyE);
+        UIManager.Instance.UpdateInputsText(inputsManager.customInput.keyQ, inputsManager.customInput.keyW, inputsManager.customInput.keyE);
     }
 
     private void OnKeyEChanged()
     {
         KeyCode newKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyEDropdown.options[keyEDropdown.value].text);
         inputsManager.SetKeyE(newKey);
-        UIManager.Instance?.UpdateInputsText(inputsManager.customInput.keyQ, inputsManager.customInput.keyW, inputsManager.customInput.keyE);
+        UIManager.Instance.UpdateInputsText(inputsManager.customInput.keyQ, inputsManager.customInput.keyW, inputsManager.customInput.keyE);
     }
 }

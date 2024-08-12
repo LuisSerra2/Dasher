@@ -43,10 +43,19 @@ public class CustomData {
     public bool _inCenter = false;
     public bool inCenter { get { return _inCenter; } set { _inCenter = value; } }
 
+    public bool _FirstPanelYouNeedToUseControlToActivate = false;
+    public bool FirstPanelYouNeedToUseControlToActivate { get { return _FirstPanelYouNeedToUseControlToActivate; } set { _FirstPanelYouNeedToUseControlToActivate = value; } }
+
+
     [Space]
 
     public RectTransform _painel;
     public RectTransform painel { get { return _painel; } set { _painel = painel; } }
+
+    [Space]
+
+    public KeyCode _key;
+    public KeyCode key { get { return _key; } set { _key = key; } }
 
     [Space]
 
