@@ -14,8 +14,11 @@ public class Teste : MonoBehaviour
     private int _panelIndex;
     private KeyCode _key;
 
+    private ChangeSceneManager _sceneManager;
+
     private void Start()
     {
+        _sceneManager = new ChangeSceneManager();
         gameData = FindObjectOfType<UIGameData>();
 
         HandleButtonsEvents();
@@ -172,12 +175,12 @@ public class Teste : MonoBehaviour
     }
     private void StartGame()
     {
-        SceneManager.LoadSceneAsync("Dasher");
+        _sceneManager.ChangeScene("Dasher");
     }
 
     private void ReturnToMainMenu()
     {
-        SceneManager.LoadSceneAsync("MainMenu");
+        _sceneManager.ChangeScene("MainMenu");
     }
 
     private void ExitGame()

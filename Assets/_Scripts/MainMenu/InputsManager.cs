@@ -34,6 +34,7 @@ public class InputsManager : PersistentSingleton<InputsManager>, IDataPersistenc
 
     public void SaveData(ref GameData data)
     {
+
         data.ability1 = customInput.keyQ;
         data.ability2 = customInput.keyW;
         data.ability3 = customInput.keyE;
