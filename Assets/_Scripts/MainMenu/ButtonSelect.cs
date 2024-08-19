@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class ButtonSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ButtonSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public Vector3 scaleAnimEnd;
 
@@ -19,11 +19,18 @@ public class ButtonSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         if (m_RectTransform != null)
         m_RectTransform.DOScale(scaleAnimEnd, 0.1f);
+        SoundManager.PlaySound(SoundType.ButtonsOnHover, SoundManager.Instance.ReturnSoundSlider());
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (m_RectTransform != null)
         m_RectTransform.DOScale(Vector3.one, 0.1f);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (m_RectTransform != null)
+            SoundManager.PlaySound(SoundType.ButtonsClick, SoundManager.Instance.ReturnSoundSlider());
     }
 }

@@ -13,6 +13,8 @@ public class GameData
     public KeyCode ability3;
     public float music;
     public float sound;
+    public bool musicON;
+    public bool soundON;
 
 
     public GameData()
@@ -28,6 +30,10 @@ public class GameData
         //Sound Slider
         this.music = 0.2f;
         this.sound = 0.2f;
+
+        //Sound Toggle
+        this.musicON = true;
+        this.soundON = true;
     }
 }
 

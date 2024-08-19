@@ -27,15 +27,13 @@ public class Teste : MonoBehaviour
 
         for (int i = 0; i < gameData.uiData.Count; i++)
         {
-            if (gameData.uiData[i].inCenter || gameData.uiData[i]._FirstPanelYouNeedToUseControlToActivate)
+            if (gameData.uiData[i].inCenter && gameData.uiData[i]._FirstPanelYouNeedToUseControlToActivate)
             {
-                if (gameData.uiData[i].painel.TryGetComponent(out CanvasGroup canvasGroup))
-                {
-                    canvasGroup.alpha = 0;
-                    canvasGroup.interactable = false;
-                    _panelIndex = i;
-                    _key = gameData.uiData[i].key;
-                }
+
+                gameData.uiData[i].painel.gameObject.SetActive(false);
+                _panelIndex = i;
+                _key = gameData.uiData[i].key;
+
             }
         }
     }
@@ -51,8 +49,11 @@ public class Teste : MonoBehaviour
         {
             if (gameData.uiData[index].painel.TryGetComponent(out CanvasGroup canvasGroup))
             {
-                canvasGroup.alpha = canvasGroup.alpha == 0 ? 1 : 0;
-                canvasGroup.interactable = canvasGroup.interactable == false ? true : false;
+                bool t = gameData.uiData[index].painel.gameObject.activeSelf;
+                t = !t;
+
+                gameData.uiData[index].painel.gameObject.SetActive(t);
+
             }
         }
     }
