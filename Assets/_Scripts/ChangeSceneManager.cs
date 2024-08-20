@@ -6,7 +6,6 @@ public class ChangeSceneManager
 {
     public void ChangeScene(string scene)
     {
-        DataPersistenceManager.Instance.SaveGame();
         SceneManager.LoadSceneAsync(scene);
     }
 }

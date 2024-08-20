@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6503955395016434798}
   - component: {fileID: 2445639261943473790}
   m_Layer: 5
-  m_Name: Checkmark
+  m_Name: CheckmarkSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,8 +153,8 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 3279110177788097578}
-  toggleTransition: 1
-  graphic: {fileID: 2445639261943473790}
+  toggleTransition: 0
+  graphic: {fileID: 0}
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:

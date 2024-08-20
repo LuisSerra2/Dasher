@@ -10,19 +10,19 @@ public class InputsManager : PersistentSingleton<InputsManager>, IDataPersistenc
     public void SetKeyQ(KeyCode newKey)
     {
         customInput.keyQ = newKey;
-        DataPersistenceManager.Instance.SaveGame();
+        //DataPersistenceManager.Instance.SaveGame();
     }
 
     public void SetKeyW(KeyCode newKey)
     {
         customInput.keyW = newKey;
-        DataPersistenceManager.Instance.SaveGame();
+        //DataPersistenceManager.Instance.SaveGame();
     }
 
     public void SetKeyE(KeyCode newKey)
     {
         customInput.keyE = newKey;
-        DataPersistenceManager.Instance.SaveGame();
+        //DataPersistenceManager.Instance.SaveGame();
     }
 
     public void LoadData(GameData data)

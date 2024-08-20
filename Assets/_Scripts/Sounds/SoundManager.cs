@@ -29,8 +29,10 @@ public enum MusicType
 }
 
 [ExecuteInEditMode]
-public class SoundManager : PersistentSingleton<SoundManager>, IDataPersistence
+public class SoundManager : MonoBehaviour, IDataPersistence
 {
+    public static SoundManager Instance;
+
     public SoundsData[] soundsDatas;
 
     [SerializeField] private AudioSource musicAudioSource;
@@ -41,6 +43,14 @@ public class SoundManager : PersistentSingleton<SoundManager>, IDataPersistence
 
     [SerializeField] private Toggle musicToggle;
     [SerializeField] private Toggle soundToggle;
+
+    private float music;
+    private float sound;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -56,31 +66,39 @@ public class SoundManager : PersistentSingleton<SoundManager>, IDataPersistence
     private void MusicSlider()
     {
         musicAudioSource.volume = musicSlider.value;
+        music = musicSlider.value;
     }
     private void SoundSlider()
     {
         soundEffectsAudioSource.volume = soundSlider.value;
+        sound = soundSlider.value;
     }
 
-    private void MusicToggle() 
+    private void MusicToggle()
     {
         if (!musicToggle.isOn)
         {
+            SpritesController.SwitchSprite(Sprites.Music, SpritesSwitch.Second);
             musicAudioSource.volume = 0;
+            music = musicSlider.value;
         } else
         {
+            SpritesController.SwitchSprite(Sprites.Music, SpritesSwitch.Principal);
             MusicSlider();
         }
-    }private void SoundToggle() 
+
+    }
+    private void SoundToggle()
     {
         if (!soundToggle.isOn)
         {
             soundEffectsAudioSource.volume = 0;
+            sound = soundSlider.value;
         } else
         {
             SoundSlider();
         }
-    }   
+    }
 
     public static void PlaySound(Enum sound, float volume)
     {
@@ -95,6 +113,7 @@ public class SoundManager : PersistentSingleton<SoundManager>, IDataPersistence
                 break;
 
             case MusicType musicType:
+                Instance.musicAudioSource.Stop();
                 clip = Instance.soundsDatas[(int)musicType + Enum.GetValues(typeof(SoundType)).Length].Sounds;
                 soundController = Instance.soundsDatas[(int)musicType + Enum.GetValues(typeof(SoundType)).Length].SoundController;
                 Instance.musicAudioSource.clip = clip;
@@ -135,12 +154,14 @@ public class SoundManager : PersistentSingleton<SoundManager>, IDataPersistence
         musicSlider.onValueChanged.AddListener(delegate { MusicSlider(); });
         soundSlider.onValueChanged.AddListener(delegate { SoundSlider(); });
 
-
         MusicToggle();
         SoundToggle();
 
-        musicSlider.value = musicAudioSource.volume;
-        soundSlider.value = soundEffectsAudioSource.volume;
+        musicSlider.value = music;
+        soundSlider.value = sound;
+
+        Debug.Log("asdasdasd");
+
     }
 
     public void LoadData(GameData data)
