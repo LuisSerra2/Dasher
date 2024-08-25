@@ -5609,6 +5609,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicToggle
       objectReference: {fileID: 0}
+    - target: {fileID: 4736114382061728905, guid: 49bfa33d3ac3d2a4084e102399249cbe,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736114382061728905, guid: 49bfa33d3ac3d2a4084e102399249cbe,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.3933053
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736114382061728905, guid: 49bfa33d3ac3d2a4084e102399249cbe,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5461728835690947383, guid: 49bfa33d3ac3d2a4084e102399249cbe,
         type: 3}
       propertyPath: m_Pivot.x
