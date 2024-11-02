@@ -8,6 +8,7 @@ public class ScaleLerping : Singleton<ScaleLerping>
     public float scalingSpeed = 2f;
     public float scalingDuration = 1f;
 
+
     public void ScaleAnimation() {
         StartCoroutine(Scale(transform, initialScale, endScale, scalingDuration, scalingSpeed));
     }

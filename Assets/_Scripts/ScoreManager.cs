@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ScoreManager : Singleton<ScoreManager>, IDataPersistence
+public class ScoreManager : Singleton<ScoreManager>
 {
+
     public Observer<int> Score;
     public Observer<int> HighScore;
 
@@ -14,6 +13,7 @@ public class ScoreManager : Singleton<ScoreManager>, IDataPersistence
 
     private void Start()
     {
+        Load();
         UpdateScore(0);
     }
 
@@ -29,19 +29,15 @@ public class ScoreManager : Singleton<ScoreManager>, IDataPersistence
         highScoreText.text = $"HighScore: {HighScore.Value}";
     }
 
-    public void LoadData(GameData data)
+    public void Save()
     {
-        HighScore.Value = data.HighScore;
-        highScoreText.text = $"HighScore: {HighScore.Value}";
+        PlayerPrefs.SetInt("HighScore", HighScore.Value);
+        PlayerPrefs.Save();
     }
 
-    public void SaveData(ref GameData data)
+    public void Load()
     {
-        data.HighScore = HighScore.Value;
-    }
-
-    public string GetUniqueIdentifier()
-    {
-        return this.gameObject.name + "_" + this.gameObject.GetInstanceID();
+        if (PlayerPrefs.HasKey("HighScore"))
+            HighScore.Value = PlayerPrefs.GetInt("HighScore");
     }
 }

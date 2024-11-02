@@ -23,7 +23,6 @@ public class UIManager : Singleton<UIManager>
     public TextMeshProUGUI ab2;
     public TextMeshProUGUI ab3;
 
-
     public void UpdateAbilitiesIndexText(Dictionary<string, int> abilityUses)
     {
         if (abilityUses.ContainsKey("BulletAbility"))

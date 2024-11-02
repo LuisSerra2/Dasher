@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WaveManager : Singleton<WaveManager>, IGameStateController
+public class WaveManager : MonoBehaviour, IGameStateController
 {
+    public static WaveManager Instance;
+
     public GameObject[] enemies;
     public BoxCollider[] spawnArea;
     public int numberOfEnemiesToSpawn;
@@ -31,6 +33,11 @@ public class WaveManager : Singleton<WaveManager>, IGameStateController
     private void OnDisable()
     {
         LevelUpManager.Instance.OnLevelUp -= UpdateDifficulty;
+    }
+
+    private void Awake()
+    {
+        Instance = this;
     }
 
     private void Start()

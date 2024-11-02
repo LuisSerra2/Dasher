@@ -19,7 +19,6 @@ public class ButtonSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         if (m_RectTransform != null)
         m_RectTransform.DOScale(scaleAnimEnd, 0.1f);
-        SoundManager.PlaySound(SoundType.ButtonsOnHover, SoundManager.Instance.ReturnSoundSlider());
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -31,6 +30,8 @@ public class ButtonSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void OnPointerClick(PointerEventData eventData)
     {
         if (m_RectTransform != null)
-            SoundManager.PlaySound(SoundType.ButtonsClick, SoundManager.Instance.ReturnSoundSlider());
+        {
+
+        }
     }
 }

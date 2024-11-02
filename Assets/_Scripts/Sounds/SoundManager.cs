@@ -29,7 +29,7 @@ public enum MusicType
 }
 
 [ExecuteInEditMode]
-public class SoundManager : MonoBehaviour, IDataPersistence
+public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
 
@@ -54,7 +54,7 @@ public class SoundManager : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
-        Initialize();
+
     }
 
     private void Update()
@@ -78,12 +78,10 @@ public class SoundManager : MonoBehaviour, IDataPersistence
     {
         if (!musicToggle.isOn)
         {
-            SpritesController.SwitchSprite(Sprites.Music, SpritesSwitch.Second);
             musicAudioSource.volume = 0;
             music = musicSlider.value;
         } else
         {
-            SpritesController.SwitchSprite(Sprites.Music, SpritesSwitch.Principal);
             MusicSlider();
         }
 
@@ -139,50 +137,6 @@ public class SoundManager : MonoBehaviour, IDataPersistence
         {
             Instance.soundEffectsAudioSource.PlayOneShot(clip, volume);
         }
-    }
-
-    public float ReturnMusicSlider() => musicSlider.value;
-    public float ReturnSoundSlider() => soundSlider.value;
-
-    public void Initialize()
-    {
-        musicSlider = GameObject.Find("MusicSlider").GetComponent<Slider>();
-        soundSlider = GameObject.Find("SoundsSlider").GetComponent<Slider>();
-        musicToggle = GameObject.Find("MusicToggle").GetComponent<Toggle>();
-        soundToggle = GameObject.Find("SoundToggle").GetComponent<Toggle>();
-
-        musicSlider.onValueChanged.AddListener(delegate { MusicSlider(); });
-        soundSlider.onValueChanged.AddListener(delegate { SoundSlider(); });
-
-        MusicToggle();
-        SoundToggle();
-
-        musicSlider.value = music;
-        soundSlider.value = sound;
-
-        Debug.Log("asdasdasd");
-
-    }
-
-    public void LoadData(GameData data)
-    {
-        musicAudioSource.volume = data.music;
-        soundEffectsAudioSource.volume = data.sound;
-        musicToggle.isOn = data.musicON;
-        soundToggle.isOn = data.soundON;
-    }
-
-    public void SaveData(ref GameData data)
-    {
-        data.music = musicAudioSource.volume;
-        data.sound = soundEffectsAudioSource.volume;
-        data.musicON = musicToggle.isOn;
-        data.soundON = soundToggle.isOn;
-    }
-
-    public string GetUniqueIdentifier()
-    {
-        return this.gameObject.name + "_" + this.gameObject.GetInstanceID();
     }
 
 #if UNITY_EDITOR

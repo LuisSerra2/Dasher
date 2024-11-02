@@ -8,8 +8,6 @@ public class Music : MonoBehaviour
 
     private void Start()
     {
-        SoundManager.Instance.Initialize();
-        SpritesController.instance.Initialize();
-        SoundManager.PlaySound(Type, SoundManager.Instance.ReturnMusicSlider());
+
     }
 }

@@ -87,8 +87,7 @@ public class Nuke : MonoBehaviour
 
         yield return new WaitForSeconds(duration / 2);
 
-        StartCoroutine(
-                ScaleLerping.Instance.Scale(bombClone, bombClone.localScale, Vector3.zero, duration, speed));
+        StartCoroutine(ScaleLerping.Instance.Scale(bombClone, bombClone.localScale, Vector3.zero, duration, speed));
 
         yield return new WaitForSeconds(duration / 2);
 

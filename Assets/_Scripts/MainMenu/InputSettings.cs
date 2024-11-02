@@ -15,11 +15,19 @@ public class InputSettings : MonoBehaviour
     {
         inputsManager = FindObjectOfType<InputsManager>();
 
+        inputsManager.Load();
+
         PopulateDropdown(keyQDropdown);
         PopulateDropdown(keyWDropdown);
         PopulateDropdown(keyEDropdown);
 
         SetInitialDropdownValues();
+
+        UIManager.Instance.UpdateInputsText(
+            inputsManager.customInput.keyQ,
+            inputsManager.customInput.keyW,
+            inputsManager.customInput.keyE
+        );
 
         keyQDropdown.onValueChanged.AddListener(delegate { OnKeyQChanged(); });
         keyWDropdown.onValueChanged.AddListener(delegate { OnKeyWChanged(); });
@@ -64,6 +72,7 @@ public class InputSettings : MonoBehaviour
     {
         KeyCode newKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyQDropdown.options[keyQDropdown.value].text);
         inputsManager.SetKeyQ(newKey);
+        inputsManager.Save();
         UIManager.Instance.UpdateInputsText(inputsManager.customInput.keyQ, inputsManager.customInput.keyW, inputsManager.customInput.keyE);
     }
 
@@ -71,6 +80,7 @@ public class InputSettings : MonoBehaviour
     {
         KeyCode newKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyWDropdown.options[keyWDropdown.value].text);
         inputsManager.SetKeyW(newKey);
+        inputsManager.Save();
         UIManager.Instance.UpdateInputsText(inputsManager.customInput.keyQ, inputsManager.customInput.keyW, inputsManager.customInput.keyE);
     }
 
@@ -78,6 +88,7 @@ public class InputSettings : MonoBehaviour
     {
         KeyCode newKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyEDropdown.options[keyEDropdown.value].text);
         inputsManager.SetKeyE(newKey);
+        inputsManager.Save();
         UIManager.Instance.UpdateInputsText(inputsManager.customInput.keyQ, inputsManager.customInput.keyW, inputsManager.customInput.keyE);
     }
 }

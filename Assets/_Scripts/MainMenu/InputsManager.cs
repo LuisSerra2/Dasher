@@ -3,46 +3,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputsManager : PersistentSingleton<InputsManager>, IDataPersistence
+public class InputsManager : PersistentSingleton<InputsManager>
 {
+
     public CustomInput customInput = new CustomInput();
 
     public void SetKeyQ(KeyCode newKey)
     {
         customInput.keyQ = newKey;
-        //DataPersistenceManager.Instance.SaveGame();
     }
 
     public void SetKeyW(KeyCode newKey)
     {
         customInput.keyW = newKey;
-        //DataPersistenceManager.Instance.SaveGame();
     }
 
     public void SetKeyE(KeyCode newKey)
     {
         customInput.keyE = newKey;
-        //DataPersistenceManager.Instance.SaveGame();
     }
 
-    public void LoadData(GameData data)
+    public void Save()
     {
-        customInput.keyQ = data.ability1;
-        customInput.keyW = data.ability2;
-        customInput.keyE = data.ability3;
+        PlayerPrefs.SetInt("KeyQ", (int)customInput.keyQ);
+        PlayerPrefs.SetInt("KeyW", (int)customInput.keyW);
+        PlayerPrefs.SetInt("KeyE", (int)customInput.keyE);
+        PlayerPrefs.Save();
     }
 
-    public void SaveData(ref GameData data)
+    public void Load()
     {
+        if (PlayerPrefs.HasKey("KeyQ"))
+            customInput.keyQ = (KeyCode)PlayerPrefs.GetInt("KeyQ");
 
-        data.ability1 = customInput.keyQ;
-        data.ability2 = customInput.keyW;
-        data.ability3 = customInput.keyE;
+        if (PlayerPrefs.HasKey("KeyW"))
+            customInput.keyW = (KeyCode)PlayerPrefs.GetInt("KeyW");
+
+        if (PlayerPrefs.HasKey("KeyE"))
+            customInput.keyE = (KeyCode)PlayerPrefs.GetInt("KeyE");
     }
 
-    public string GetUniqueIdentifier()
+    private void OnApplicationQuit()
     {
-        return this.gameObject.name + "_" + this.gameObject.GetInstanceID();
+        Save();
     }
 }
 

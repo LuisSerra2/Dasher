@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : Singleton<PlayerController>, IGameStateController
+public class PlayerController : MonoBehaviour, IGameStateController
 {
+    public static PlayerController Instance;
+
     public float speed;
     public LayerMask ground;
 
@@ -58,6 +60,10 @@ public class PlayerController : Singleton<PlayerController>, IGameStateControlle
 
     private InputsManager inputsManager;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         playerMaterial.SetFloat("_DeathTimer", 0);
@@ -128,7 +134,9 @@ public class PlayerController : Singleton<PlayerController>, IGameStateControlle
             deathTime = Mathf.Clamp(deathTime, 0f, maxDeathTime);
 
             playerMaterial.SetFloat("_DeathTimer", deathTime / maxDeathTime);
-        }        
+
+        }
+        ScoreManager.Instance.Save();
     }
 
     private void MovementWithRaycast()

@@ -17,10 +17,17 @@ public interface IGameStateController
     public abstract void Dead();
 }
 
-public class GameController : Singleton<GameController>
+public class GameController : MonoBehaviour
 {
+    public static GameController Instance;
+
     public GameManager gameManager = GameManager.Idle;
     private List<IGameStateController> gameStateControllers = new List<IGameStateController>();
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
