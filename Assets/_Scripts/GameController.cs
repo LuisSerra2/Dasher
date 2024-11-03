@@ -32,19 +32,11 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         gameStateControllers.AddRange(FindObjectsOfType<MonoBehaviour>().OfType<IGameStateController>());
+        ChangeState(GameManager.Playing);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            ChangeState(GameManager.Playing);
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            ChangeState(GameManager.Dead);
-        }
-
         foreach (var controller in gameStateControllers)
         {
             switch (gameManager)

@@ -32,6 +32,10 @@ public class BossController : Singleton<BossController>, IGameStateController
     [Header("Attack2")]
     public GameObject smashBall;
     public GameObject smashBallPosition;
+    public int smashDurationTimer = 10;
+
+    public GameObject[] noZone;
+    private int rndZone;
 
     public float shakeDuration = 1f;
     public float shakeIntensity = 3f;
@@ -119,7 +123,7 @@ public class BossController : Singleton<BossController>, IGameStateController
         Rigidbody rb = bullet.transform.GetChild(0).GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.AddForce(direcao * 80f, ForceMode.Impulse); 
+            rb.AddForce(direcao * 80f, ForceMode.Impulse);
         }
     }
 
@@ -130,15 +134,21 @@ public class BossController : Singleton<BossController>, IGameStateController
 
     IEnumerator IESmash()
     {
-        //Animation
+        rndZone = Random.Range(0, noZone.Length);
+        noZone[rndZone].SetActive(true);
 
         yield return new WaitForSeconds(1f);
+
 
         CameraShake.Instance.ShakeCamera(1f, 3);
         GameObject smashBallClone = Instantiate(smashBall, smashBallPosition.transform.position, Quaternion.identity);
 
-        smashBallClone.transform.DOScale(new Vector3(100, 100, 100), 5f).OnComplete(()=> Destroy(smashBallClone));
-        
-        
+        smashBallClone.transform.DOScale(new Vector3(100, 100, 100), smashDurationTimer).OnComplete(() =>
+        {
+            noZone[rndZone].SetActive(false);
+            Destroy(smashBallClone);
+        });
+
+
     }
 }

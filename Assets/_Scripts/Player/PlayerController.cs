@@ -126,6 +126,12 @@ public class PlayerController : MonoBehaviour, IGameStateController
         OnPlayerDeath();
     }
 
+    public void ChangeStateOnDeath()
+    {
+        Debug.Log("Change");
+        GameController.Instance.ChangeState(GameManager.Dead);
+    }
+
     public void OnPlayerDeath()
     {
         if (WaveManager.Instance.PlayerColorChange())

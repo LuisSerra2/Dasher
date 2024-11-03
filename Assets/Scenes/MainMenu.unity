@@ -5370,47 +5370,6 @@ PrefabInstance:
       propertyPath: soundToggle
       value: 
       objectReference: {fileID: 1081117520}
-    - target: {fileID: 4800940385353853650, guid: 6fc810927cc3f7d4385c492c9eda333f,
-        type: 3}
-      propertyPath: musicToggleSpriteOn
-      value: 
-      objectReference: {fileID: -1767244516, guid: 063a09170503c89489098999a344d543,
-        type: 3}
-    - target: {fileID: 4800940385353853650, guid: 6fc810927cc3f7d4385c492c9eda333f,
-        type: 3}
-      propertyPath: soundToggleSpriteOn
-      value: 
-      objectReference: {fileID: -1933407544, guid: 3682a70f24aa2334a8072335fbf46c57,
-        type: 3}
-    - target: {fileID: 4800940385353853650, guid: 6fc810927cc3f7d4385c492c9eda333f,
-        type: 3}
-      propertyPath: musicToggleSpriteOff
-      value: 
-      objectReference: {fileID: 585427389, guid: 063a09170503c89489098999a344d543,
-        type: 3}
-    - target: {fileID: 4800940385353853650, guid: 6fc810927cc3f7d4385c492c9eda333f,
-        type: 3}
-      propertyPath: soundToggleSpriteOff
-      value: 
-      objectReference: {fileID: -1744066481, guid: 3682a70f24aa2334a8072335fbf46c57,
-        type: 3}
-    - target: {fileID: 4800940385353853650, guid: 6fc810927cc3f7d4385c492c9eda333f,
-        type: 3}
-      propertyPath: musicToggleSprite.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4800940385353853650, guid: 6fc810927cc3f7d4385c492c9eda333f,
-        type: 3}
-      propertyPath: musicToggleSprite.Array.data[0]
-      value: 
-      objectReference: {fileID: -1767244516, guid: 063a09170503c89489098999a344d543,
-        type: 3}
-    - target: {fileID: 4800940385353853650, guid: 6fc810927cc3f7d4385c492c9eda333f,
-        type: 3}
-      propertyPath: musicToggleSprite.Array.data[1]
-      value: 
-      objectReference: {fileID: 585427389, guid: 063a09170503c89489098999a344d543,
-        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5596,36 +5555,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6184781920440140183}
     m_Modifications:
-    - target: {fileID: 133664906126939951, guid: 49bfa33d3ac3d2a4084e102399249cbe,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1767244516, guid: 063a09170503c89489098999a344d543,
-        type: 3}
     - target: {fileID: 400019436985156420, guid: 49bfa33d3ac3d2a4084e102399249cbe,
         type: 3}
       propertyPath: m_Name
       value: MusicToggle
-      objectReference: {fileID: 0}
-    - target: {fileID: 4736114382061728905, guid: 49bfa33d3ac3d2a4084e102399249cbe,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4736114382061728905, guid: 49bfa33d3ac3d2a4084e102399249cbe,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4736114382061728905, guid: 49bfa33d3ac3d2a4084e102399249cbe,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.3933053
-      objectReference: {fileID: 0}
-    - target: {fileID: 4736114382061728905, guid: 49bfa33d3ac3d2a4084e102399249cbe,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5461728835690947383, guid: 49bfa33d3ac3d2a4084e102399249cbe,
         type: 3}
@@ -5725,21 +5658,6 @@ PrefabInstance:
     - target: {fileID: 5461728835690947383, guid: 49bfa33d3ac3d2a4084e102399249cbe,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825690338477752912, guid: 49bfa33d3ac3d2a4084e102399249cbe,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825690338477752912, guid: 49bfa33d3ac3d2a4084e102399249cbe,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 6825690338477752912, guid: 49bfa33d3ac3d2a4084e102399249cbe,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -10623,47 +10541,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6184781920440140183}
     m_Modifications:
-    - target: {fileID: 2285908525619557148, guid: bb59a671f7f22f74bb9bf866983135fa,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 2285908525619557148, guid: bb59a671f7f22f74bb9bf866983135fa,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 2445639261943473790, guid: bb59a671f7f22f74bb9bf866983135fa,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1933407544, guid: 3682a70f24aa2334a8072335fbf46c57,
-        type: 3}
-    - target: {fileID: 3279110177788097578, guid: bb59a671f7f22f74bb9bf866983135fa,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.54509807
-      objectReference: {fileID: 0}
-    - target: {fileID: 3279110177788097578, guid: bb59a671f7f22f74bb9bf866983135fa,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3279110177788097578, guid: bb59a671f7f22f74bb9bf866983135fa,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3279110177788097578, guid: bb59a671f7f22f74bb9bf866983135fa,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3279110177788097578, guid: bb59a671f7f22f74bb9bf866983135fa,
-        type: 3}
-      propertyPath: m_PixelsPerUnitMultiplier
-      value: 0.23
-      objectReference: {fileID: 0}
     - target: {fileID: 6068891870510953479, guid: bb59a671f7f22f74bb9bf866983135fa,
         type: 3}
       propertyPath: m_Name
