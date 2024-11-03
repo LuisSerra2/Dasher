@@ -29,76 +29,19 @@ public enum MusicType
 }
 
 [ExecuteInEditMode]
-public class SoundManager : MonoBehaviour
+public class SoundManager : PersistentSingleton<SoundManager>
 {
-    public static SoundManager Instance;
-
     public SoundsData[] soundsDatas;
-
-    [SerializeField] private AudioSource musicAudioSource;
-    [SerializeField] private AudioSource soundEffectsAudioSource;
-
-    [SerializeField] private Slider musicSlider;
-    [SerializeField] private Slider soundSlider;
-
-    [SerializeField] private Toggle musicToggle;
-    [SerializeField] private Toggle soundToggle;
-
-    private float music;
-    private float sound;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
+    public AudioSource musicAudioSource;
+    public AudioSource soundEffectsAudioSource;
 
     private void Start()
     {
-
+        musicAudioSource.volume = SoundInputManager.Instance.musicVolume;
+        soundEffectsAudioSource.volume = SoundInputManager.Instance.soundVolume;
     }
 
-    private void Update()
-    {
-        MusicToggle();
-        SoundToggle();
-    }
-
-    private void MusicSlider()
-    {
-        musicAudioSource.volume = musicSlider.value;
-        music = musicSlider.value;
-    }
-    private void SoundSlider()
-    {
-        soundEffectsAudioSource.volume = soundSlider.value;
-        sound = soundSlider.value;
-    }
-
-    private void MusicToggle()
-    {
-        if (!musicToggle.isOn)
-        {
-            musicAudioSource.volume = 0;
-            music = musicSlider.value;
-        } else
-        {
-            MusicSlider();
-        }
-
-    }
-    private void SoundToggle()
-    {
-        if (!soundToggle.isOn)
-        {
-            soundEffectsAudioSource.volume = 0;
-            sound = soundSlider.value;
-        } else
-        {
-            SoundSlider();
-        }
-    }
-
-    public static void PlaySound(Enum sound, float volume)
+    public static void PlaySound(Enum sound)
     {
         AudioClip clip = null;
         SoundController soundController;
@@ -111,13 +54,9 @@ public class SoundManager : MonoBehaviour
                 break;
 
             case MusicType musicType:
-                Instance.musicAudioSource.Stop();
                 clip = Instance.soundsDatas[(int)musicType + Enum.GetValues(typeof(SoundType)).Length].Sounds;
                 soundController = Instance.soundsDatas[(int)musicType + Enum.GetValues(typeof(SoundType)).Length].SoundController;
-                Instance.musicAudioSource.clip = clip;
-                Instance.musicAudioSource.loop = true;
-                Instance.musicAudioSource.Play();
-                return;
+                break;
 
             default:
                 Debug.LogWarning("Unrecognized sound type: " + sound.ToString());
@@ -132,10 +71,12 @@ public class SoundManager : MonoBehaviour
 
         if (soundController == SoundController.Music)
         {
-            return;
+            Instance.musicAudioSource.clip = clip;
+            Instance.musicAudioSource.volume = SoundInputManager.Instance.musicVolume;
+            Instance.musicAudioSource.Play();
         } else if (soundController == SoundController.Sound)
         {
-            Instance.soundEffectsAudioSource.PlayOneShot(clip, volume);
+            Instance.soundEffectsAudioSource.PlayOneShot(clip, SoundInputManager.Instance.soundVolume);
         }
     }
 

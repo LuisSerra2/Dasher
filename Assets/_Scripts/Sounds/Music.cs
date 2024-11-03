@@ -8,6 +8,6 @@ public class Music : MonoBehaviour
 
     private void Start()
     {
-
+        SoundManager.PlaySound(Type);
     }
 }
