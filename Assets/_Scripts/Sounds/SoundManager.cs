@@ -18,7 +18,7 @@ public enum SoundType
     Meteor,
     GameOver,
     ButtonsOnHover,
-    ButtonsClick
+    ButtonsClick,
 }
 
 public enum MusicType

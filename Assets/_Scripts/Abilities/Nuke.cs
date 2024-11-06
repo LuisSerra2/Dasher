@@ -64,6 +64,7 @@ public class Nuke : MonoBehaviour
 
     IEnumerator NukeAnimation()
     {
+        SoundManager.PlaySound(SoundType.Nuke);
         Destroy(warningClone);
 
         Vector3 bombPosition = new Vector3(transform.GetChild(0).position.x, -1f, transform.GetChild(0).position.z);

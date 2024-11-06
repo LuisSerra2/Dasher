@@ -29,17 +29,9 @@ public class BossController : Singleton<BossController>, IGameStateController
 
     [Space(20)]
 
-    [Header("Attack2")]
-    public GameObject smashBall;
-    public GameObject smashBallPosition;
-    public int smashDurationTimer = 10;
-
-    public GameObject[] noZone;
-    private int rndZone;
-
-    public float shakeDuration = 1f;
-    public float shakeIntensity = 3f;
-
+    [Header("Smash")]
+    public GameObject Smash;
+    public GameObject SmashPosition;
 
     public void Idle()
     {
@@ -95,7 +87,8 @@ public class BossController : Singleton<BossController>, IGameStateController
     {
         if (!canSpawn) return;
         canSpawn = false;
-        Smash();
+
+        Instantiate(Smash, SmashPosition.transform.position, Quaternion.identity);
     }
     public void Attack3()
     {
@@ -127,28 +120,5 @@ public class BossController : Singleton<BossController>, IGameStateController
         }
     }
 
-    private void Smash()
-    {
-        StartCoroutine(IESmash());
-    }
-
-    IEnumerator IESmash()
-    {
-        rndZone = Random.Range(0, noZone.Length);
-        noZone[rndZone].SetActive(true);
-
-        yield return new WaitForSeconds(1f);
-
-
-        CameraShake.Instance.ShakeCamera(1f, 3);
-        GameObject smashBallClone = Instantiate(smashBall, smashBallPosition.transform.position, Quaternion.identity);
-
-        smashBallClone.transform.DOScale(new Vector3(100, 100, 100), smashDurationTimer).OnComplete(() =>
-        {
-            noZone[rndZone].SetActive(false);
-            Destroy(smashBallClone);
-        });
-
-
-    }
+   
 }

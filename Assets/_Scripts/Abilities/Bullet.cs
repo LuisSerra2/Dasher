@@ -28,6 +28,7 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
+        SoundManager.PlaySound(SoundType.Bullet);
         int rndIndex = Random.Range(0, colors.Length);
         transform.GetComponent<MeshRenderer>().material.color = colors[rndIndex];
         Destroy(gameObject, 5);

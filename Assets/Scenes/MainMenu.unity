@@ -4552,10 +4552,10 @@ MonoBehaviour:
   soundsDatas:
   - Name: Bullet
     SoundController: 1
-    Sounds: {fileID: 0}
+    Sounds: {fileID: 8300000, guid: 13106910eedabe34986f5cbd04d75840, type: 3}
   - Name: Nuke
     SoundController: 1
-    Sounds: {fileID: 0}
+    Sounds: {fileID: 8300000, guid: 71d8341bd1af0dd438fb85afcd36afa7, type: 3}
   - Name: Spin
     SoundController: 1
     Sounds: {fileID: 0}

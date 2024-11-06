@@ -160,6 +160,7 @@ public class PlayerController : MonoBehaviour, IGameStateController
 
     private void MovePlayer()
     {
+
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
