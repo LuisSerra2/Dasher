@@ -60844,6 +60844,7 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 0.7951521, b: 0, a: 1}
   spawnIndicator: {fileID: 382106381}
+  canSpawn: 1
 --- !u!1 &1752156620 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3164213933836343527, guid: 45ee1988720da274c81b99774d6469c0,

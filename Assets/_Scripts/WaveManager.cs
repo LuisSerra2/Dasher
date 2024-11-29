@@ -25,6 +25,8 @@ public class WaveManager : MonoBehaviour, IGameStateController
 
     private bool playerColorChange;
 
+    public bool canSpawn = false;
+
     private void OnEnable()
     {
         LevelUpManager.Instance.OnLevelUp += UpdateDifficulty;
@@ -52,6 +54,7 @@ public class WaveManager : MonoBehaviour, IGameStateController
 
     public void Playing()
     {
+        if (canSpawn) return;
         Timer();
     }
 
