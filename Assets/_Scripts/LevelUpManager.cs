@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class LevelUpManager : Singleton<LevelUpManager>
 {
@@ -13,10 +14,15 @@ public class LevelUpManager : Singleton<LevelUpManager>
     private int previousXPMaximum;
     private int LevelUpCount;
 
+    [HideInInspector]
+    public int bossLevel;
+
     private void Start()
     {
         XP = defaultXP;
         LevelUpCount = 1;
+        bossLevel = 1;
+        UIManager.Instance.XpUpdate(XP, currentXPMaximum, LevelUpCount);
     }
 
     private void Update()
@@ -47,8 +53,9 @@ public class LevelUpManager : Singleton<LevelUpManager>
 
     public void AddLevel()
     {
-        if (HasLevelUp())
+        if (HasLevelUp() && !OnBossLevel())
         {
+            bossLevel++;
             OnLevelUp?.Invoke();
             previousXPMaximum = currentXPMaximum;
             currentXPMaximum *= upgradeCurrentXPMaximum;
@@ -57,7 +64,10 @@ public class LevelUpManager : Singleton<LevelUpManager>
             AddXPReceivedMore();
             UIManager.Instance.XpUpdate(XP, currentXPMaximum, LevelUpCount);
         }
+        
     }
+
+    //Obter se o value do slider esta no maximo
 
     public int GetXPAfterLevelUp()
     {
@@ -83,5 +93,16 @@ public class LevelUpManager : Singleton<LevelUpManager>
     }
 
     public int GetCurrentLevelUp() => LevelUpCount;
+
+    public bool OnBossLevel()
+    {
+        if (bossLevel >= 3)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
 }
 

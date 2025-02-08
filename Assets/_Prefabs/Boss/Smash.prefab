@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3139333409658188321}
   - component: {fileID: 7528289910756898343}
   - component: {fileID: -4235371143410148119}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Smash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 8006146668244482931}
   - component: {fileID: 1699840123415658962}
   - component: {fileID: 4058454703330237270}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Enemy Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

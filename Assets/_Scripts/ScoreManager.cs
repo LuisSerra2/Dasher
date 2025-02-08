@@ -10,9 +10,16 @@ public class ScoreManager : Singleton<ScoreManager>
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highScoreText;
 
+    public bool resetScore;
 
     private void Start()
     {
+        if (resetScore)
+        {
+            PlayerPrefs.SetInt("HighScore", 0);
+            PlayerPrefs.Save();
+        }
+
         Load();
         UpdateScore(0);
     }
@@ -26,7 +33,7 @@ public class ScoreManager : Singleton<ScoreManager>
         }
         if (scoreText == null || highScoreText == null ) return;
         scoreText.text = $"Score: {Score.Value}";
-        highScoreText.text = $"HighScore: {HighScore.Value}";
+        highScoreText.text = $"HighScore\n{HighScore.Value}";
     }
 
     public void Save()

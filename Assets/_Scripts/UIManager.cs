@@ -1,7 +1,9 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
@@ -23,6 +25,19 @@ public class UIManager : Singleton<UIManager>
     public TextMeshProUGUI ab2;
     public TextMeshProUGUI ab3;
 
+    [Header("EndGameMenu")]
+    public GameObject endGameMenu;
+    public Button retryButton;
+    public Button backToMenuButton;
+
+    private void Start()
+    {
+        if (retryButton == null && backToMenuButton == null) return;
+        retryButton.onClick.AddListener(Retry);
+        backToMenuButton.onClick.AddListener(BackToMenu);
+    }
+
+
     public void UpdateAbilitiesIndexText(Dictionary<string, int> abilityUses)
     {
         if (abilityUses.ContainsKey("BulletAbility"))
@@ -41,7 +56,6 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-
     public void XpUpdate(int xp, int maxValue, int levelUpCount)
     {
         xpSlider.maxValue = maxValue;
@@ -58,4 +72,26 @@ public class UIManager : Singleton<UIManager>
         this.ab3.text = ab3.ToString();
     }
 
+    public void EndGameMenu()
+    {
+        endGameMenu.transform.DOScale(Vector3.one, 0.5f).OnComplete(() => StartCoroutine(PopAnim()));
+    }
+    private void Retry()
+    {
+        Scene currentSceneIndex = SceneManager.GetActiveScene();
+        SceneManager.LoadSceneAsync(currentSceneIndex.buildIndex);
+    }
+    private void BackToMenu()
+    {
+        SceneManager.LoadSceneAsync("MainMenu");
+    }
+
+    IEnumerator PopAnim()
+    {
+        for (int i = 0; i < endGameMenu.transform.childCount; i++)
+        {
+            endGameMenu.transform.GetChild(i).transform.DOScale(Vector3.one, 0.5f);
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
 }

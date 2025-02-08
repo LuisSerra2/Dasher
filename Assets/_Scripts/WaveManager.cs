@@ -70,7 +70,10 @@ public class WaveManager : MonoBehaviour, IGameStateController
         if (timer <= 0)
         {
             timer = defaultTimer;
-            SpawnEnemies();
+            if (!LevelUpManager.Instance.OnBossLevel())
+            {
+                SpawnEnemies();
+            }
         }
     }
 
@@ -146,7 +149,7 @@ public class WaveManager : MonoBehaviour, IGameStateController
         CameraManager.Instance.ChangeCamera();
         yield return new WaitForSeconds(1f);
         playerColorChange = true;
-
+        UIManager.Instance.EndGameMenu();
     }
 
     public bool PlayerColorChange() => playerColorChange;
