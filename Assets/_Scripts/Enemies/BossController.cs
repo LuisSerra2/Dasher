@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -16,18 +17,11 @@ public class BossController : Singleton<BossController>, IGameStateController
 {
     public BossState BossState;
 
-    [Header("Attack1")]
     public GameObject leftArm;
     public GameObject rightArm;
     public GameObject bullet;
-
-    private int count = 0;
-
     private bool canSpawn = false;
 
-    [Space(20)]
-
-    [Header("Smash")]
     public GameObject Smash;
     public GameObject SmashPosition;
 
@@ -38,34 +32,21 @@ public class BossController : Singleton<BossController>, IGameStateController
 
     public void Playing()
     {
+        
         switch (BossState)
         {
             case BossState.None:
-                if (Input.GetKeyDown(KeyCode.K))
-                {
-                    ChangeState(BossState.Attack2);
-                }
-                break;
-            case BossState.Intro:
+                if(!LevelUpManager.instance.OnBossLevel()) return;
+                ChangeState(BossState.Attack2);
                 break;
             case BossState.Attack1:
                 Attack1();
                 break;
             case BossState.Attack2:
+                if (!WaveManager.Instance.WaitAllEnemiesHasDied()) return;
                 Attack2();
                 break;
-            case BossState.Attack3:
-                Attack3();
-                break;
-            case BossState.End:
-                break;
-            default:
-                break;
         }
-    }
-    public void Dead()
-    {
-        ChangeState(BossState.None);
     }
 
     public void ChangeState(BossState bossState)
@@ -85,38 +66,22 @@ public class BossController : Singleton<BossController>, IGameStateController
     {
         if (!canSpawn) return;
         canSpawn = false;
-
         Instantiate(Smash, SmashPosition.transform.position, Quaternion.identity);
     }
-    public void Attack3()
-    {
 
+    public void Dead()
+    {
+        ChangeState(BossState.None);
+        LevelUpManager.Instance.BossDefeated();
     }
 
     private IEnumerator IEAttack1()
     {
         for (int i = 0; i < 10; i++)
         {
-            GameObject armPosition = (count % 2 == 0) ? leftArm : rightArm;
-
+            GameObject armPosition = (i % 2 == 0) ? leftArm : rightArm;
             GameObject bulletClone = Instantiate(bullet, armPosition.transform.position, Quaternion.identity);
-            Shoot(bulletClone);
-
-            count++;
             yield return new WaitForSeconds(1f);
         }
     }
-
-    private void Shoot(GameObject bullet)
-    {
-        Vector3 direcao = (PlayerController.Instance.transform.position - bullet.transform.position).normalized;
-
-        Rigidbody rb = bullet.transform.GetChild(0).GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.AddForce(direcao * 80f, ForceMode.Impulse);
-        }
-    }
-
-   
 }

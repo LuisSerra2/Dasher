@@ -30,8 +30,13 @@ public class UIManager : Singleton<UIManager>
     public Button retryButton;
     public Button backToMenuButton;
 
+    [Header("Boss")]
+    public GameObject bossWarningPanel;
+
     private void Start()
     {
+        LevelUpManager.Instance.OnBossIncoming += ShowBossIncomingWarning;
+
         if (retryButton == null && backToMenuButton == null) return;
         retryButton.onClick.AddListener(Retry);
         backToMenuButton.onClick.AddListener(BackToMenu);
@@ -84,6 +89,18 @@ public class UIManager : Singleton<UIManager>
     private void BackToMenu()
     {
         SceneManager.LoadSceneAsync("MainMenu");
+    }
+
+    public void ShowBossIncomingWarning()
+    {
+        bossWarningPanel.SetActive(true);
+        StartCoroutine(HideBossWarning());
+    }
+
+    private IEnumerator HideBossWarning()
+    {
+        yield return new WaitForSeconds(3f);
+        bossWarningPanel.SetActive(false);
     }
 
     IEnumerator PopAnim()

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8942196620681372147}
   - component: {fileID: 3028135955405608890}
   - component: {fileID: 2235382646548480088}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 2729795529616780254}
   - component: {fileID: 7625416741288191489}
   - component: {fileID: 7607665752625083400}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 8885284007459724921}
   - component: {fileID: 2677137974499368134}
   - component: {fileID: 920096032969411795}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 1861452759663056849}
   - component: {fileID: 1917598041866129004}
   - component: {fileID: 5894583043049247978}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3120471674932735387}
   - component: {fileID: -861604200768114446}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 'Enemy 2 Split '
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -61,6 +61,7 @@ public class ObstaclesManager : Singleton<ObstaclesManager>, IGameStateControlle
 
     public void Playing()
     {
+        if (LevelUpManager.instance.OnBossLevel()) return;
         LaserTimer();
         MeterioteTimer();
     }

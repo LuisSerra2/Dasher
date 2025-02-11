@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7374873190589592530}
   - component: {fileID: 2577590068915702917}
   - component: {fileID: 3966244312003012296}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 4021033329940359821}
   - component: {fileID: 3111504410456283985}
   - component: {fileID: 6200214315518875415}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 284354964990200541}
   - component: {fileID: -1814445519531413390}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy 1 Split
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 5589649599276709257}
   - component: {fileID: 3058306084986788706}
   - component: {fileID: 8698886451134080204}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 5425288522889799955}
   - component: {fileID: 1242451351808526328}
   - component: {fileID: 9175727032398060653}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

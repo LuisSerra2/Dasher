@@ -5,6 +5,8 @@ public class LevelUpManager : Singleton<LevelUpManager>
 {
     public event Action<int> OnXPReceive;
     public event Action OnLevelUp;
+    public event Action OnBossIncoming;
+    public event Action OnBossDefeated;
 
     private const int defaultXP = 0;
     private int XP;
@@ -14,20 +16,19 @@ public class LevelUpManager : Singleton<LevelUpManager>
     private int previousXPMaximum;
     private int LevelUpCount;
 
-    [HideInInspector]
-    public int bossLevel;
+    private int bossSpawnFrequency = 2;
+    private bool stopXP = false;
 
     private void Start()
     {
         XP = defaultXP;
         LevelUpCount = 1;
-        bossLevel = 1;
-        UIManager.Instance.XpUpdate(XP, currentXPMaximum, LevelUpCount);
+        //UIManager.Instance.XpUpdate(XP, currentXPMaximum, LevelUpCount);
     }
 
     private void Update()
     {
-        AddLevel();
+        CheckLevelUp();
     }
 
     public void OnEnable()
@@ -47,47 +48,59 @@ public class LevelUpManager : Singleton<LevelUpManager>
 
     private void LevelUpManager_OnXPReceive(int EnemyXP)
     {
+        if (stopXP) return;
+
         XP += EnemyXP;
         UIManager.Instance.XpUpdate(XP, currentXPMaximum, LevelUpCount);
     }
 
-    public void AddLevel()
+    private void CheckLevelUp()
     {
-        if (HasLevelUp() && !OnBossLevel())
+        if (HasLevelUp())
         {
-            bossLevel++;
-            OnLevelUp?.Invoke();
-            previousXPMaximum = currentXPMaximum;
-            currentXPMaximum *= upgradeCurrentXPMaximum;
-            previousXP = XP;
-            LevelUpCount++;
-            AddXPReceivedMore();
-            UIManager.Instance.XpUpdate(XP, currentXPMaximum, LevelUpCount);
+            if (LevelUpCount + 1 == bossSpawnFrequency)
+            {
+                OnBossIncoming?.Invoke();
+            }
+
+            if (OnBossLevel())
+            {
+                stopXP = true;
+                return;
+            }
+
+            LevelUp();
         }
-        
     }
 
-    //Obter se o value do slider esta no maximo
-
-    public int GetXPAfterLevelUp()
+    private void LevelUp()
     {
-        int xp = previousXP - previousXPMaximum;
-
-        if (xp < 0)
-        {
-            xp = -xp;
-        }
-
-        return xp;
-    }
-
-    public void AddXPReceivedMore()
-    {
+        OnLevelUp?.Invoke();
+        previousXPMaximum = currentXPMaximum;
+        currentXPMaximum *= upgradeCurrentXPMaximum;
+        previousXP = XP;
+        LevelUpCount++;
         XP = GetXPAfterLevelUp();
+        UIManager.Instance.XpUpdate(XP, currentXPMaximum, LevelUpCount);
     }
 
+    public void BossDefeated()
+    {
+        stopXP = false;
+        LevelUpCount++;
+        previousXPMaximum = currentXPMaximum;
+        currentXPMaximum *= upgradeCurrentXPMaximum;
+        XP = 0;
+        UIManager.Instance.XpUpdate(XP, currentXPMaximum, LevelUpCount);
+        OnBossDefeated?.Invoke();
+    }
 
-    public bool HasLevelUp()
+    private int GetXPAfterLevelUp()
+    {
+        return Mathf.Max(previousXP - previousXPMaximum, 0);
+    }
+
+    private bool HasLevelUp()
     {
         return XP >= currentXPMaximum;
     }
@@ -96,13 +109,6 @@ public class LevelUpManager : Singleton<LevelUpManager>
 
     public bool OnBossLevel()
     {
-        if (bossLevel >= 3)
-        {
-            return true;
-        } else
-        {
-            return false;
-        }
+        return LevelUpCount % bossSpawnFrequency == 0;
     }
 }
-

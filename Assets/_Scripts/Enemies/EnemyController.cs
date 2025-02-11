@@ -27,7 +27,7 @@ public class EnemyController : MonoBehaviour, IGameStateController
 
     public void Idle()
     {
-        // Implement Idle state behavior here
+
     }
 
     public void Playing()

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4219036364145143563}
   - component: {fileID: 2956709887077405900}
   - component: {fileID: 8666062016051550223}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 2104747918416310964}
   - component: {fileID: 3266481682708413805}
   - component: {fileID: 1945414271288614974}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 279324650696786301}
   - component: {fileID: 3531563122066998937}
   - component: {fileID: 1216314625465754798}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +409,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6120045755715933792}
   - component: {fileID: -5547389820224119145}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 'Enemy 3 Split '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 7092087125863047011}
   - component: {fileID: 1875055077373344413}
   - component: {fileID: 2505013078295430759}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,7 +603,7 @@ GameObject:
   - component: {fileID: 1059783785989631023}
   - component: {fileID: 4646475065787293827}
   - component: {fileID: 3311781825613084631}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -736,7 +736,7 @@ GameObject:
   - component: {fileID: 4310983492794372637}
   - component: {fileID: 1860536426439953882}
   - component: {fileID: 1341412380718991426}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -869,7 +869,7 @@ GameObject:
   - component: {fileID: 8452269124701128875}
   - component: {fileID: 3009251532147820261}
   - component: {fileID: 8163550885878588969}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1002,7 +1002,7 @@ GameObject:
   - component: {fileID: 2831497112422490583}
   - component: {fileID: 3683715330773023287}
   - component: {fileID: 4451754395165430763}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

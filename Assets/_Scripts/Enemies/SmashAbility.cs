@@ -19,6 +19,7 @@ public class SmashAbility : MonoBehaviour
     private bool canSmash;
 
     private Rigidbody rb;
+    private GameObject noZoneClone;
 
     private void Start()
     {
@@ -45,41 +46,46 @@ public class SmashAbility : MonoBehaviour
             {
                 canSmash = false;
                 SmashAfterShock();
+                Destroy(gameObject);
             }
         }
     }
 
     private void Smash()
     {
+        if (noZoneClone == null)
+        {
+            noZoneClone = Instantiate(noZone, BossController.Instance.transform);
+        }
+
         canSmash = true;
-        rndZone = Random.Range(0, noZone.transform.childCount);
-        noZone.transform.GetChild(rndZone).gameObject.SetActive(true);
+
+        for (int i = 0; i < noZoneClone.transform.childCount; i++)
+        {
+            noZoneClone.transform.GetChild(rndZone).gameObject.SetActive(false);
+        }
+
+        rndZone = Random.Range(0, noZoneClone.transform.childCount);
+        noZoneClone.transform.GetChild(rndZone).gameObject.SetActive(true);
     }
+
 
     private void SmashAfterShock()
     {
         CameraShake.Instance.ShakeCamera(1f, 3);
         GameObject smashBallClone = Instantiate(smashBall, transform.position, Quaternion.identity);
+        
 
         smashBallClone.transform.DOScale(new Vector3(100, 100, 100), smashDurationTimer).OnComplete(() =>
         {
             noZone.transform.GetChild(rndZone).gameObject.SetActive(false);
             BossController.Instance.ChangeState(BossState.None);
             Destroy(smashBallClone);
-            LauchCube();
         });
+        BossController.Instance.Dead();
+        Destroy(noZoneClone, 5f);
+
     }
-
-    private void LauchCube() {
-
-        Vector3 direction = (PlayerController.Instance.transform.position - transform.position).normalized;
-
-        rb.AddForce(direction * launchForce);
-
-        Destroy(gameObject, 2f);
-    }
-
-
 
     private void OnCollisionEnter(Collision collision)
     {
