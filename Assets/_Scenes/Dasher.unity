@@ -7217,7 +7217,7 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0, a: 1}
   horizontalSpawnArea: {fileID: 1441960890}
   verticalSpawnArea: {fileID: 1339880104}
-  laserAmount: 1
+  laserAmount: 2
   minDistanceBetweenLasers: 4
   spawnedPositions: []
   laserDefaultTimer: 5
@@ -7226,7 +7226,7 @@ MonoBehaviour:
   meterioteWarning: {fileID: 6235037124797126604, guid: 48aaa194db7369448a918fa44396daab,
     type: 3}
   meterioteSpawnArea: {fileID: 10336858}
-  meteoriteAmount: 1
+  meteoriteAmount: 4
   meterioteDefaultTimer: 10
   spawnIndicator: {fileID: 382106381}
 --- !u!1 &197291460 stripped
@@ -47796,7 +47796,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 806, y: 283}
+  m_AnchoredPosition: {x: 806, y: 486}
   m_SizeDelta: {x: 377.6904, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1377114919
