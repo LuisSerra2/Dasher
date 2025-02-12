@@ -21,6 +21,8 @@ public class SmashAbility : MonoBehaviour
     private Rigidbody rb;
     private GameObject noZoneClone;
 
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
