@@ -6,11 +6,9 @@ using UnityEngine;
 public enum BossState
 {
     None,
-    Intro,
     Attack1,
     Attack2,
-    Attack3,
-    End
+    Attack3
 }
 
 public class BossController : Singleton<BossController>, IGameStateController
@@ -31,6 +29,13 @@ public class BossController : Singleton<BossController>, IGameStateController
     public GameObject Smash;
     public GameObject SmashPosition;
 
+    [Header("Attack3")]
+    public GameObject SafeZone;
+    public Light lightController;
+    public float lerpLightDuration = 1f;
+    public int safeZoneTries = 3;
+    private int safeZoneTriesLeft;
+
     public void Idle()
     {
         ChangeState(BossState.None);
@@ -43,10 +48,19 @@ public class BossController : Singleton<BossController>, IGameStateController
             case BossState.None:
                 if (!LevelUpManager.instance.OnBossLevel()) return;
 
-                BossState nextAttack = Random.Range(0, 2) == 0? BossState.Attack1 : BossState.Attack2;
-                Debug.Log(nextAttack);
+                int rndAttackIndex = Random.Range(0, 3);
 
-                ChangeState(nextAttack);
+                if (rndAttackIndex == 0)
+                {
+                    ChangeState(BossState.Attack1);
+                } else if (rndAttackIndex == 1)
+                {
+                    ChangeState(BossState.Attack2);
+                } else if (rndAttackIndex == 2)
+                {
+                    ChangeState(BossState.Attack3);
+                }
+
                 break;
             case BossState.Attack1:
                 if (!WaveManager.Instance.WaitAllEnemiesHasDied()) return;
@@ -55,6 +69,10 @@ public class BossController : Singleton<BossController>, IGameStateController
             case BossState.Attack2:
                 if (!WaveManager.Instance.WaitAllEnemiesHasDied()) return;
                 Attack2();
+                break;
+            case BossState.Attack3:
+                if (!WaveManager.Instance.WaitAllEnemiesHasDied()) return;
+                Attack3();
                 break;
         }
     }
@@ -82,7 +100,89 @@ public class BossController : Singleton<BossController>, IGameStateController
     {
         if (!canSpawn) return;
         canSpawn = false;
+
         Instantiate(Smash, SmashPosition.transform.position, Quaternion.identity);
+    }
+
+    public void Attack3()
+    {
+        if (!canSpawn) return;
+        canSpawn = false;
+
+        safeZoneTriesLeft = safeZoneTries;
+        StartCoroutine(ChangeLightColorLerp());
+    }
+
+    IEnumerator ChangeLightColorLerp()
+    {
+        float elapsedTime = 0;
+
+        while (elapsedTime < lerpLightDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / lerpLightDuration;
+
+            if (lightController != null)
+            {
+                lightController.color = Color.Lerp(lightController.color, Color.black, t);
+            }
+
+            yield return null;
+        }
+
+        SpawnSafeZone();
+    }
+
+    public void OnAttack3Kill()
+    {
+        StartCoroutine(ChangeLightOriginalColorLerp());
+    }
+
+    IEnumerator ChangeLightOriginalColorLerp()
+    {
+        float elapsedTime = 0;
+
+        while (elapsedTime < lerpLightDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / lerpLightDuration;
+
+            if (lightController != null)
+            {
+                lightController.color = Color.Lerp(lightController.color, Color.white, t);
+            }
+
+            yield return null;
+        }
+
+        Dead();
+    }
+
+
+    public void SpawnSafeZone()
+    {
+        if (safeZoneTriesLeft > 0)
+        {
+
+            float x = Random.Range(-20f, 16f);
+            float z = Random.Range(-10f, 10f);
+            Vector3 position = new Vector3(x, 0f, z);
+
+            GameObject safeZoneInstance = Instantiate(SafeZone, position, Quaternion.identity);
+            SafeZone safeZoneScript = safeZoneInstance.GetComponentInChildren<SafeZone>();
+
+            if (safeZoneScript != null)
+            {
+                safeZoneScript.SetBossController(this);
+            }
+
+            safeZoneTriesLeft--;
+
+        } else
+        {
+
+            StartCoroutine(ChangeLightOriginalColorLerp());
+        }
     }
 
     IEnumerator ChangeCubeColorLerp()

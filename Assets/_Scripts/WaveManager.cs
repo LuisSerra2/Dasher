@@ -140,7 +140,7 @@ public class WaveManager : MonoBehaviour, IGameStateController
         foreach (GameObject item in spawnedEnemies)
         {
             yield return new WaitForSeconds(0.2f);
-            Destroy(item.gameObject);
+            Destroy(item);
         }
         RandomGroundColor.Instance.ChangeGroundColorOnDeath(FindObjectOfType<PlayerController>().transform.position);
         yield return new WaitForSeconds(0.5f);

@@ -24,6 +24,7 @@ public class SpawnAbilities : Singleton<SpawnAbilities>, IGameStateController
 
     public void Playing()
     {
+        if (LevelUpManager.instance.OnBossLevel()) return;
         Timer();
     }
 

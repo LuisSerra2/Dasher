@@ -63,6 +63,7 @@ public class UIManager : Singleton<UIManager>
 
     public void XpUpdate(int xp, int maxValue, int levelUpCount)
     {
+        if (GameController.Instance.gameManager == GameManager.Dead) return;
         xpSlider.maxValue = maxValue;
         xpSlider.value = xp;
         levelUpText.text = levelUpCount.ToString();

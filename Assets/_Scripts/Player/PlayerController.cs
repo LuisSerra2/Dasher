@@ -128,7 +128,6 @@ public class PlayerController : MonoBehaviour, IGameStateController
 
     public void ChangeStateOnDeath()
     {
-        Debug.Log("Change");
         GameController.Instance.ChangeState(GameManager.Dead);
     }
 
